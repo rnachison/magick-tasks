@@ -1,6 +1,7 @@
 import Router from 'vue-router'
 import TaskList from '@/components/TaskList'
 import AddTask from '@/components/AddTask'
+import ViewTask from '@/components/ViewTask'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 
@@ -15,6 +16,11 @@ export default new Router({
       path: '/add-task',
       name: 'AddTask',
       component: AddTask
+    },
+    {
+      path: '/view-task/:id',
+      name: 'ViewTask',
+      component: ViewTask
     },
     {
       path: '/login',

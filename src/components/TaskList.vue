@@ -92,8 +92,8 @@ export default {
         return;
       }
       this.$router.push({
-        name: 'ShowTask',
-        params: { id: task._id }
+        name: 'ViewTask',
+        params: { id: task.id }
       })
     },
     logout () {

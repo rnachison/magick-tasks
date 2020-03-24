@@ -5,7 +5,7 @@ require('../config/passport')(passport);
 var Task = require('../models').Task;
 
 /* GET ALL TASKS */
-router.get('/', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
     if (token) {
       return Task
@@ -22,21 +22,32 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
 });
 
 /* GET SINGLE TASK BY ID */
-router.get('/:id', function(req, res, next) {
-  Task.findById(req.params.taskId)
-    .then(task => {
-      if (!task) {
-        return res.status(404).send({
-          message: 'Task Not Found',
-        });
+router.get('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+  var token = getToken(req.headers);
+    if (token) {
+      return Task
+        .findOne({
+          where: {
+            id: req.params.id,
+            userId: req.user.id
+          }
+        })
+        .then(task => {
+          if (!task) {
+            return res.status(404).send({
+              message: 'Task Not Found',
+            });
+          }
+          return res.status(200).send(task);
+        })
+        .catch(error => res.status(400).send(error));
+      } else {
+        return res.status(403).send({success: false, msg: 'Unauthorized.'});
       }
-      return res.status(200).send(task);
-    })
-    .catch(error => res.status(400).send(error));
 });
 
 /* SAVE TASK */
-router.post('/', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
   console.log('inside post');
   var token = getToken(req.headers);
   if (token) {
@@ -55,8 +66,13 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
 });
 
 /* UPDATE TASK */
-router.put('/:id', function(req, res, next) {
-  Task.findById(req.params.taskId)
+router.put('/:id', function(req, res) {
+  Task.findOne({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    })
     .then(task => {
       if (!task) {
         return res.status(404).send({
@@ -72,8 +88,13 @@ router.put('/:id', function(req, res, next) {
 });
 
 /* DELETE TASK */
-router.delete('/:id', function(req, res, next) {
-  Task.findById(req.params.taskId)
+router.delete('/:id', function(req, res) {
+  Task.findOne({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    })
     .then(task => {
       if (!task) {
         return res.status(400).send({

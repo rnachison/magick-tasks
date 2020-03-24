@@ -1,0 +1,99 @@
+<template>
+  <b-row>
+    <b-col cols="12">
+      <h2>
+        Task List
+        <b-link href="#/">(Task List)</b-link>
+      </h2>
+      <b-jumbotron>
+        <template slot="header">{{task.title}}</template>
+        <template slot="lead">
+          Notes: {{task.notes}}
+          <br>
+          Due: {{task.dueDate}}
+          <br>
+          Update At: {{task.updatedAt}}
+          <br>
+        </template>
+        <hr class="my-4">
+        <b-btn class="edit-btn" variant="success" @click.stop="editTask(task.id)">Edit</b-btn>
+        <b-btn variant="danger" @click.stop="deleteTask(task.id)">Delete</b-btn>
+      </b-jumbotron>
+      <ul v-if="errors && errors.length">
+        <li v-for="error of errors" :key="error.message">
+          {{error.message}}
+        </li>
+      </ul>
+    </b-col>
+  </b-row>
+</template>
+
+<script>
+
+import axios from 'axios'
+
+export default {
+  name: 'ViewTask',
+  data () {
+    return {
+      task: '',
+      taskId: parseInt(this.$route.params.id),
+      errors: []
+    }
+  },
+  created () {
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
+    axios.get(`http://localhost:3000/task/` + this.taskId)
+    .then(response => {
+      this.task = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+      if(e.response.status === 401) {
+        this.$router.push({
+          name: 'Login'
+        })
+      }
+    })
+  },
+  methods: {
+    editTask(id) {
+      this.$router.push({
+        name: "EditTask",
+        params: { id: id }
+      });
+    },
+    deleteTask(id) {
+      axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
+      axios.delete(`http://localhost:3000/task/` + id)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(e => {
+        this.errors.push(e)
+        if(e.response.status === 401) {
+          this.$router.push({
+            name: 'Login'
+          })
+        }
+      })
+    },
+    logout () {
+      localStorage.removeItem('jwtToken')
+      this.$router.push({
+        name: 'Login'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+  .jumbotron {
+    padding: 2rem;
+  }
+  .edit-btn {
+    margin-right: 20px;
+    width: 70px;
+}
+</style>
