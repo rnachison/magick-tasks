@@ -46,7 +46,7 @@ export default {
       evt.preventDefault()
       axios.post(`http://localhost:3000/api/auth/register/`, this.register)
       .then(response => {
-        console.log(response);
+        console.log(response.status);
         alert("Registered successfully")
         this.$router.push({
           name: 'Login'

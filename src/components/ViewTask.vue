@@ -67,7 +67,10 @@ export default {
       axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
       axios.delete(`http://localhost:3000/task/` + id)
       .then(response => {
-        console.log(response);
+        console.log(response.status);
+        this.$router.push({
+          name: 'TaskList'
+        });
       })
       .catch(e => {
         this.errors.push(e)

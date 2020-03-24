@@ -56,10 +56,9 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-      console.log('TASK: ' + JSON.stringify(this.task));
       axios.post(`http://localhost:3000/task`, this.task)
       .then(response => {
-        console.log(response);
+        console.log(response.status);
         this.$router.push({
           name: 'TaskList'
         })
