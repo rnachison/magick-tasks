@@ -2,7 +2,7 @@
   <b-row class="justify-content-md-center">
     <b-col cols="6">
       <div v-if="errors && errors.length">
-        <div v-for="error of errors">
+        <div v-for="error of errors" :key="error.message">
           <b-alert show>{{error.message}}</b-alert>
         </div>
       </div>
