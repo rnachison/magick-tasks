@@ -43,7 +43,7 @@ export default {
   },
   created () {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-    axios.get(`http://localhost:3000/task/` + this.taskId)
+    axios.get(`/task/` + this.taskId)
     .then(response => {
       this.task = response.data
     })
@@ -65,7 +65,7 @@ export default {
     },
     deleteTask(id) {
       axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-      axios.delete(`http://localhost:3000/task/` + id)
+      axios.delete(`/task/` + id)
       .then(response => {
         console.log(response.status);
         this.$router.push({

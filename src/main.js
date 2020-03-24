@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
+import VueMoment from 'vue-moment'
 import VueRouter from 'vue-router'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,6 +11,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+Vue.use(VueMoment);
 
 new Vue({
   router,

@@ -73,7 +73,7 @@ export default {
   },
   created () {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-    axios.get(`http://localhost:3000/task`)
+    axios.get(`/task`)
     .then(response => {
       this.tasks = response.data
     })

@@ -57,7 +57,7 @@ import axios from 'axios'
     },
     created () {
       axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-      axios.get(`http://localhost:3000/task/` + this.taskId)
+      axios.get(`/task/` + this.taskId)
       .then(response => {
         this.task = response.data
       })
@@ -74,7 +74,7 @@ import axios from 'axios'
       onSubmit(evt) {
         evt.preventDefault();
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.put(`http://localhost:3000/task/` + this.taskId, this.task)
+        axios.put(`/task/` + this.taskId, this.task)
         .then(response => {
           console.log(response.status);
           this.$router.push({

@@ -44,7 +44,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      axios.post(`http://localhost:3000/api/auth/register/`, this.register)
+      axios.post(`/api/auth/register/`, this.register)
       .then(response => {
         console.log(response.status);
         alert("Registered successfully")
