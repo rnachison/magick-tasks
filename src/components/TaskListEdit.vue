@@ -3,7 +3,7 @@
     <b-col cols="12">
       <h2>
         Edit Task
-        <router-link :to="{ name: 'ViewTask', params: { id: taskId } }">(Show Task)</router-link>
+        <router-link :to="{ name: 'TaskListItem', params: { id: taskId } }">(Show Task)</router-link>
       </h2>
       <div v-if="errors && errors.length">
         <div v-for="error of errors" :key="error.message">
@@ -47,7 +47,7 @@
 import axios from 'axios'
 
   export default {
-    name: "EditTask",
+    name: "TaskListEdit",
     data() {
       return {
         taskId: this.$route.params.id,
@@ -78,7 +78,7 @@ import axios from 'axios'
         .then(response => {
           console.log(response.status);
           this.$router.push({
-            name: 'ViewTask',
+            name: 'TaskListItem',
             params: { id: this.taskId }
           })
         })

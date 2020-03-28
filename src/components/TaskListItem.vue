@@ -33,7 +33,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'ViewTask',
+  name: 'TaskListItem',
   data () {
     return {
       task: '',
@@ -59,7 +59,7 @@ export default {
   methods: {
     editTask(id) {
       this.$router.push({
-        name: "EditTask",
+        name: "TaskListEdit",
         params: { id: id }
       });
     },

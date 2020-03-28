@@ -1,8 +1,8 @@
 import Router from 'vue-router'
 import TaskList from '@/components/TaskList'
-import AddTask from '@/components/AddTask'
-import EditTask from '@/components/EditTask'
-import ViewTask from '@/components/ViewTask'
+import TaskListCreate from '@/components/TaskListCreate'
+import TaskListEdit from '@/components/TaskListEdit'
+import TaskListItem from '@/components/TaskListItem'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 
@@ -15,18 +15,18 @@ export default new Router({
     },
     {
       path: '/add-task',
-      name: 'AddTask',
-      component: AddTask
+      name: 'TaskListCreate',
+      component: TaskListCreate
     },
     {
       path: '/edit-task/:id',
-      name: 'EditTask',
-      component: EditTask
+      name: 'TaskListEdit',
+      component: TaskListEdit
     },
     {
       path: '/view-task/:id',
-      name: 'ViewTask',
-      component: ViewTask
+      name: 'TaskListItem',
+      component: TaskListItem
     },
     {
       path: '/login',

@@ -10,13 +10,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Uncial Antiqua', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: $Medieval-Illustrations-2-hex;
+  background: $Medieval-Illustrations-5-hex;
+
+  h2 {
+    color: $Medieval-Illustrations-3-hex;
+  }
 }
 </style>
