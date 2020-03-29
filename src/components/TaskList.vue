@@ -7,24 +7,30 @@
       <b-link @click="logout()">(Logout)</b-link>
     </h2>
     <div class="deck-wrapper">
-      <b-card-group deck>
+      <b-card-group deck
+                    :class="{ noneChosen: chosenTask == null }">
         <b-card v-for="(task, index) of tasks"
                 :key="index"
                 @click.stop="chooseTask(index)"
                 :class="{ chosen: chosenTask == index }">
-          <b-card-title>{{task.title}}</b-card-title>
-          <b-card-text>
-            <div>
-              {{task.notes}}
-            </div>
-            <div v-if="task && task.dueDate">
-              {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
-            </div>
-          </b-card-text>
-          <b-button @click.stop="details(task)"
-                    variant="primary">
-                    Details
-          </b-button>
+          <div class="front">
+            <b-card-title>{{task.title}}</b-card-title>
+            <b-card-text>
+              <div>
+                {{task.notes}}
+              </div>
+              <div v-if="task && task.dueDate">
+                {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
+              </div>
+            </b-card-text>
+            <b-button @click.stop="details(task)"
+                      variant="primary">
+                      Details
+            </b-button>
+          </div>
+          <div class="back">
+            DISPLAY BACK
+          </div>
         </b-card>
       </b-card-group>
     </div>
@@ -125,6 +131,16 @@ $card-height: $card-width * $phi;
         margin-left: 50px;
         padding-left: 15px;
 
+        &.noneChosen {
+          .card {
+            &:hover {
+                transform: translateY(-20px);
+                transition: 0.4s ease-out;
+                width: $card-width - $card-pull;
+            }
+          }
+        }
+
         .card {
             -ms-flex: none;
             -webkit-box-flex: none;
@@ -139,37 +155,56 @@ $card-height: $card-width * $phi;
             background: transparent;
             border: none;
             z-index: 20;
-
-            &:hover {
-                transform: translateY(-20px);
-                transition: 0.4s ease-out;
-                width: $card-width - $card-pull;
-            }
+            top: 0;
+            left: 0;
 
             &.chosen {
-              left: 50%;
-              transform: translate(-50%, -50%);
-              top: 50%;
-              position: fixed;
+              // left: 50%;
+              // transform: translate(-50%, -50%);
+              // top: 50%;
+              // position: fixed;
               z-index: 100;
-              width: $card-width * 2;
-              height: $card-height * 2;
-              max-height: 90%;
-              max-width: 90%;
               transition: 0.4s ease-out;
 
               .card-body {
-                width: 100%;
+
+                .front {
+                  transform: rotateY(180deg);
+                  transition: 0.4s ease-out;
+                }
+
+                .back {
+                  transform: rotateY(0deg);
+                  width: $card-width * 2;
+                  height: $card-height * 2;
+                  transition: 0.4s ease-out;
+                }
               }
             }
 
             .card-body {
-                left: 0;
-                position: relative;
-                border-radius: 10px;
-                box-shadow: -1rem 0 3rem #000;
-                background: $Medieval-Illustrations-4-hex;
-                width: $card-width;
+
+              padding: 0;
+
+              .front, .back {
+                  padding: 1.25rem;
+                  height: 100%;
+                  left: 0;
+                  position: absolute;
+                  border-radius: 10px;
+                  box-shadow: -1rem 0 3rem #000;
+                  background: $Medieval-Illustrations-4-hex;
+                  width: $card-width;
+                  transition: 0.4s ease-out;
+                  -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+                  transform-style: preserve-3d;
+                  transform: rotateY(0);
+              }
+
+              .back {
+                transform: rotateY(180deg);
+              }
             }
         }
     }
