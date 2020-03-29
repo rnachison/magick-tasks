@@ -1,49 +1,47 @@
 <template>
-  <div>
-    <b-container>
-      <b-row class="justify-content-center">
-        <b-col cols="10">
-          <h2>
-            Task List
-            <b-link href="#/add-task">(Add Task)</b-link>
-            <b-link @click="logout()">(Logout)</b-link>
-          </h2>
-          <div class="deck-wrapper">
-            <b-card-group deck>
-              <b-card v-for="task of tasks" :key="task.id">
-                <b-card-title>{{task.title}}</b-card-title>
-                <b-card-text>
-                  <div>
-                    {{task.notes}}
-                  </div>
-                  <div>
-                    {{ task.createdAt | moment("dddd, MMMM Do YYYY") }}
-                  </div>
-                </b-card-text>
-                <b-button @click.stop="details(task)" variant="primary">Details</b-button>
-              </b-card>
-            </b-card-group>
-          </div>
-          <ul v-if="errors && errors.length">
-            <li v-for="error of errors" :key="error.message">
-              {{error.message}}
-            </li>
-          </ul>
-        </b-col>
-        <b-col cols="2">
-          <div class="candle-wrapper">
-            <img src="../assets/40144-edited.svg" alt="candles" class="img-fluid">
-          </div>
-        </b-col>
-      </b-row>
-    </b-container>
-    <FooterDesk />
-  </div>
+<div>
+  <b-col cols="9">
+    <h2>
+      Task List
+      <b-link href="#/add-task">(Add Task)</b-link>
+      <b-link @click="logout()">(Logout)</b-link>
+    </h2>
+    <div class="deck-wrapper">
+      <b-card-group deck>
+        <b-card v-for="task of tasks"
+                :key="task.id">
+          <b-card-title>{{task.title}}</b-card-title>
+          <b-card-text>
+            <div>
+              {{task.notes}}
+            </div>
+            <div v-if="task && task.dueDate">
+              {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
+            </div>
+          </b-card-text>
+          <b-button @click.stop="details(task)"
+                    variant="primary">
+                    Details
+          </b-button>
+        </b-card>
+      </b-card-group>
+    </div>
+    <ul v-if="errors && errors.length">
+      <li v-for="error of errors"
+          :key="error.message">
+        {{error.message}}
+      </li>
+    </ul>
+  </b-col>
+  <FooterCandles />
+  <FooterDesk />
+</div>
 </template>
 
 <script>
 import axios from 'axios';
 import FooterDesk from './FooterDesk.vue';
+import FooterCandles from './FooterCandles.vue';
 
 export default {
   name: 'TaskList',
@@ -53,7 +51,10 @@ export default {
       errors: []
     }
   },
-  components: { FooterDesk },
+  components: {
+    FooterDesk,
+    FooterCandles
+  },
   created() {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
     axios.get(`/task`)
@@ -96,57 +97,58 @@ export default {
 $card-width: 225px;
 $card-height: $card-width * $phi;
 
-h2 {
-  margin-top: 60px;
-}
-
-.candle-wrapper {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 37vw;
-  z-index: 10;
-}
-
 .deck-wrapper {
 
-  padding: 60px 0px;
+    padding: 60px 0;
+    width: 300px;
 
-  .card-deck {
-
-    margin-left: 50px;
-    padding-left: 15px;
-
-    .card {
-      -ms-flex: none;
-      -webkit-box-flex: none;
-      flex: none;
-      height: $card-height;
-      width: $card-width;
-      transition: 0.4s ease-out;
-      position: relative;
-      margin-left: $card-pull;
-      margin-right: 0;
-      margin-top: $card-pull / ($phi * $phi * $phi);
-      background: transparent;
-      border: none;
-      z-index: 20;
-
-      &:hover {
-        transform: translateY(-20px);
-        transition: 0.4s ease-out;
-        width: $card-width - $card-pull;
-      }
-
-      .card-body {
-        left: 0;
-        position: relative;
-        border-radius: 10px;
-        box-shadow: -1rem 0 3rem #000;
-        background: $Medieval-Illustrations-4-hex;
-        width: $card-width;
-      }
+    @media (min-width: $breakpoint-md) {
+      width: 450px;
     }
-  }
+
+    @media (min-width: $breakpoint-lg) {
+      width: 625px;
+    }
+
+    @media (min-width: $breakpoint-xl) {
+      width: 800px;
+    }
+
+    .card-deck {
+
+        margin-left: 50px;
+        padding-left: 15px;
+
+        .card {
+            -ms-flex: none;
+            -webkit-box-flex: none;
+            flex: none;
+            height: $card-height;
+            width: $card-width;
+            transition: 0.4s ease-out;
+            position: relative;
+            margin-left: $card-pull;
+            margin-right: 0;
+            margin-top: $card-pull / ($phi * $phi * $phi);
+            background: transparent;
+            border: none;
+            z-index: 20;
+
+            &:hover {
+                transform: translateY(-20px);
+                transition: 0.4s ease-out;
+                width: $card-width - $card-pull;
+            }
+
+            .card-body {
+                left: 0;
+                position: relative;
+                border-radius: 10px;
+                box-shadow: -1rem 0 3rem #000;
+                background: $Medieval-Illustrations-4-hex;
+                width: $card-width;
+            }
+        }
+    }
 }
 </style>

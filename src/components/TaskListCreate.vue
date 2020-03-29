@@ -1,79 +1,107 @@
 <template>
-  <b-row>
-    <b-col cols="12">
+  <div>
+    <b-col cols="9">
       <h2>
         Add Task
         <b-link href="#/">(Task List)</b-link>
       </h2>
-      <b-jumbotron>
+      <b-jumbotron class="form-container">
         <b-form @submit="onSubmit">
-          <b-form-group
-            id="fieldsetHorizontal"
-            horizontal
-            :label-cols="4"
-            breakpoint="md"
-            label="Enter Title"
-          >
-            <b-form-input id="title" v-model.trim="task.title"></b-form-input>
+          <b-form-group horizontal
+                        :label-cols="4"
+                        breakpoint="md"
+                        label="Title"
+                        label-for="title"
+                        :invalid-feedback="invalidFeedback"
+                        :state="state">
+            <b-form-input id="title"
+                          v-model.trim="task.title"
+                          :state="state">
+            </b-form-input>
           </b-form-group>
-          <b-form-group
-            id="fieldsetHorizontal"
-            horizontal
-            :label-cols="4"
-            breakpoint="md"
-            label="Enter Notes"
-          >
-            <b-form-textarea
-              id="notes"
-              v-model="task.notes"
-              placeholder="Enter something"
-              :rows="2"
-              :max-rows="6"
-            >{{task.notes}}</b-form-textarea>
+          <b-form-group horizontal
+                        :label-cols="4"
+                        breakpoint="md"
+                        label="Notes">
+            <b-form-textarea id="notes"
+                             v-model="task.notes"
+                             placeholder="Enter notes"
+                             :rows="2"
+                             :max-rows="6">
+               {{task.notes}}
+             </b-form-textarea>
           </b-form-group>
-          <b-button type="submit" variant="primary">Save</b-button>
+          <b-form-group horizontal
+                        :label-cols="4"
+                        breakpoint="md"
+                        label="Due">
+            <b-form-datepicker id="dueDate"
+                               v-model="task.dueDate"
+                               label="Due Date"
+                               value-as-date >
+             </b-form-datepicker>
+          </b-form-group>
+          <b-button type="submit"
+                    variant="primary">
+                    Save
+          </b-button>
         </b-form>
       </b-jumbotron>
     </b-col>
-  </b-row>
+    <FooterCandles />
+    <FooterDesk />
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import FooterDesk from './FooterDesk.vue';
+import FooterCandles from './FooterCandles.vue';
 
 export default {
 
   name: 'TaskListCreate',
-
   data() {
     return {
       task: {}
     };
 
   },
-
+  components: {
+    FooterDesk,
+    FooterCandles
+  },
+  computed: {
+    state() {
+      return this.task && this.task.title && this.task.title.length ? true : false;
+    },
+    invalidFeedback() {
+      return 'This field is required';
+    }
+  },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
       axios.post(`/task`, this.task)
-      .then(response => {
-        console.log(response.status);
-        this.$router.push({
-          name: 'TaskList'
+        .then(response => {
+          console.log(response.status);
+          this.$router.push({
+            name: 'TaskList'
+          })
         })
-      })
-      .catch(e => {
-        console.log(e)
-        this.errors.push(e)
-      })
+        .catch(e => {
+          console.log(e)
+          this.errors.push(e)
+        })
     }
   }
 }
 </script>
-<style scoped>
-.aform {
-  margin-left: auto;
-  width: 60%;
+<style lang="scss" scoped>
+
+.form-container {
+  background: $Medieval-Illustrations-4-hex;
 }
+
 </style>

@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Uncial+Antiqua&display=swap');
 
-$phi: 1.618;
-$card-pull: -50px;
+/* Breakpoints */
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
 /* Color Theme Swatches in Hex */
 $Medieval-Illustrations-1-hex: #025949;
 $Medieval-Illustrations-2-hex: #593D07;
@@ -22,3 +27,6 @@ $Medieval-Illustrations-2-hsla: hsla(39, 85, 18, 1);
 $Medieval-Illustrations-3-hsla: hsla(22, 85, 64, 1);
 $Medieval-Illustrations-4-hsla: hsla(16, 90, 49, 1);
 $Medieval-Illustrations-5-hsla: hsla(0, 80, 30, 1);
+
+$phi: 1.618;
+$card-pull: -50px;
