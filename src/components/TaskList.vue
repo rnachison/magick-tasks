@@ -8,8 +8,10 @@
     </h2>
     <div class="deck-wrapper">
       <b-card-group deck>
-        <b-card v-for="task of tasks"
-                :key="task.id">
+        <b-card v-for="(task, index) of tasks"
+                :key="index"
+                @click.stop="chooseTask(index)"
+                :class="{ chosen: chosenTask == index }">
           <b-card-title>{{task.title}}</b-card-title>
           <b-card-text>
             <div>
@@ -48,7 +50,8 @@ export default {
   data() {
     return {
       tasks: [],
-      errors: []
+      errors: [],
+      chosenTask: null
     }
   },
   components: {
@@ -81,6 +84,9 @@ export default {
           id: task.id
         }
       })
+    },
+    chooseTask(index) {
+      this.chosenTask = this.chosenTask !== index ? index : null;
     },
     logout() {
       localStorage.removeItem('jwtToken')
@@ -138,6 +144,23 @@ $card-height: $card-width * $phi;
                 transform: translateY(-20px);
                 transition: 0.4s ease-out;
                 width: $card-width - $card-pull;
+            }
+
+            &.chosen {
+              left: 50%;
+              transform: translate(-50%, -50%);
+              top: 50%;
+              position: fixed;
+              z-index: 100;
+              width: $card-width * 2;
+              height: $card-height * 2;
+              max-height: 90%;
+              max-width: 90%;
+              transition: 0.4s ease-out;
+
+              .card-body {
+                width: 100%;
+              }
             }
 
             .card-body {
