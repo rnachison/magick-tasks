@@ -1,0 +1,28 @@
+body {
+  background: $Medieval-Illustrations-5-hex;
+  color: $Medieval-Illustrations-2-hex;
+  font-family: 'Uncial Antiqua', cursive;
+
+  h2 {
+    color: $Medieval-Illustrations-2-hex;
+  }
+
+  .btn {
+    background-color: $Medieval-Illustrations-1-hex;
+    border-color: $Medieval-Illustrations-1-hex;
+
+    &:hover {
+      background-color: lighten($Medieval-Illustrations-1-hex, 10%);
+      border-color: lighten($Medieval-Illustrations-1-hex, 10%);
+    }
+  }
+
+  a {
+    color: $Medieval-Illustrations-1-hex;
+
+    &:hover {
+      color: lighten($Medieval-Illustrations-1-hex, 10%);
+    }
+  }
+
+}

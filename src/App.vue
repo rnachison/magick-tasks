@@ -18,9 +18,5 @@ export default {
   text-align: center;
   color: $Medieval-Illustrations-2-hex;
   background: $Medieval-Illustrations-5-hex;
-
-  h2 {
-    color: $Medieval-Illustrations-3-hex;
-  }
 }
 </style>

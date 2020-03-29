@@ -1,45 +1,49 @@
 <template>
-<b-container>
-  <b-row class="justify-content-center">
-    <b-col cols="10">
-      <h2>
-        Task List
-        <b-link href="#/add-task">(Add Task)</b-link>
-        <b-link @click="logout()">(Logout)</b-link>
-      </h2>
-      <div class="deck-wrapper">
-        <b-card-group deck>
-          <b-card v-for="task of tasks" :key="task.id">
-            <b-card-title>{{task.title}}</b-card-title>
-            <b-card-text>
-              <div>
-                {{task.notes}}
-              </div>
-              <div>
-                {{ task.createdAt | moment("dddd, MMMM Do YYYY") }}
-              </div>
-            </b-card-text>
-            <b-button @click.stop="details(task)" variant="primary">Details</b-button>
-          </b-card>
-        </b-card-group>
-      </div>
-      <ul v-if="errors && errors.length">
-        <li v-for="error of errors" :key="error.message">
-          {{error.message}}
-        </li>
-      </ul>
-    </b-col>
-    <b-col cols="2">
-      <div class="candle-wrapper">
-        <img src="../assets/40144.png" alt="candles" class="img-fluid">
-      </div>
-    </b-col>
-  </b-row>
-</b-container>
+  <div>
+    <b-container>
+      <b-row class="justify-content-center">
+        <b-col cols="10">
+          <h2>
+            Task List
+            <b-link href="#/add-task">(Add Task)</b-link>
+            <b-link @click="logout()">(Logout)</b-link>
+          </h2>
+          <div class="deck-wrapper">
+            <b-card-group deck>
+              <b-card v-for="task of tasks" :key="task.id">
+                <b-card-title>{{task.title}}</b-card-title>
+                <b-card-text>
+                  <div>
+                    {{task.notes}}
+                  </div>
+                  <div>
+                    {{ task.createdAt | moment("dddd, MMMM Do YYYY") }}
+                  </div>
+                </b-card-text>
+                <b-button @click.stop="details(task)" variant="primary">Details</b-button>
+              </b-card>
+            </b-card-group>
+          </div>
+          <ul v-if="errors && errors.length">
+            <li v-for="error of errors" :key="error.message">
+              {{error.message}}
+            </li>
+          </ul>
+        </b-col>
+        <b-col cols="2">
+          <div class="candle-wrapper">
+            <img src="../assets/40144-edited.svg" alt="candles" class="img-fluid">
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+    <FooterDesk />
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import FooterDesk from './FooterDesk.vue';
 
 export default {
   name: 'TaskList',
@@ -49,6 +53,7 @@ export default {
       errors: []
     }
   },
+  components: { FooterDesk },
   created() {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
     axios.get(`/task`)
@@ -99,7 +104,8 @@ h2 {
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 37%;
+  width: 37vw;
+  z-index: 10;
 }
 
 .deck-wrapper {
@@ -124,6 +130,7 @@ h2 {
       margin-top: $card-pull / ($phi * $phi * $phi);
       background: transparent;
       border: none;
+      z-index: 20;
 
       &:hover {
         transform: translateY(-20px);
