@@ -87,7 +87,7 @@ export default {
   }
 
   &:hover {
-    color: #ffa502;
+    color: $Medieval-Illustrations-4-hex;
     box-shadow: 0 0 15px #d35400;
     text-shadow: 0 0 15px #d35400;
 

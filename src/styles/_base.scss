@@ -7,14 +7,20 @@ body {
     color: $Medieval-Illustrations-3-hex;
   }
 
-  .btn {
-    background-color: $Medieval-Illustrations-1-hex;
-    border-color: $Medieval-Illustrations-1-hex;
+  // .btn {
+  //   background-color: $Medieval-Illustrations-1-hex;
+  //   border-color: $Medieval-Illustrations-1-hex;
+  //
+  //   &:hover {
+  //     background-color: lighten($Medieval-Illustrations-1-hex, 10%);
+  //     border-color: lighten($Medieval-Illustrations-1-hex, 10%);
+  //   }
+  // }
 
-    &:hover {
-      background-color: lighten($Medieval-Illustrations-1-hex, 10%);
-      border-color: lighten($Medieval-Illustrations-1-hex, 10%);
-    }
+  .btn {
+    background-color: $Medieval-Illustrations-3-hex;
+    border-color: $Medieval-Illustrations-3-hex;
+    color: $Medieval-Illustrations-5-hex;
   }
 
   a {

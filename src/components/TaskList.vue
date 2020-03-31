@@ -105,7 +105,7 @@ export default {
       .then(response => {
         console.log(response.status);
         //put back task card
-        this.chosenTask = null;
+        this.closeTask();
       })
       .catch(e => {
         console.log(e)
@@ -216,6 +216,8 @@ $animation-transition: 1s ease-out;
                 position: fixed;
                 top: 50%;
                 left: 50%;
+                box-shadow: 0 0 15px #d35400;
+                text-shadow: 0 0 15px #d35400;
                 transform: translate(-50%,-50%) rotateY(180deg);
               }
             }
@@ -225,6 +227,11 @@ $animation-transition: 1s ease-out;
                 top: -20px;
                 transition: $transition;
                 width: $card-width - $card-pull;
+
+                .front {
+                  box-shadow: 0 0 15px #d35400;
+                  text-shadow: 0 0 15px #d35400;
+                }
             }
 
 
@@ -259,14 +266,14 @@ $animation-transition: 1s ease-out;
 
             &.unchosen {
 
-              animation: card-unchosen $animation-transition forwards;
+              animation: card-unchosen $animation-transition;
 
               .front {
-                animation: front-unchosen $animation-transition forwards;
+                animation: front-unchosen $animation-transition;
               }
 
               .back {
-                animation: back-unchosen $animation-transition forwards;
+                animation: back-unchosen $animation-transition;
               }
             }
         }
@@ -292,13 +299,19 @@ $animation-transition: 1s ease-out;
 @keyframes front-chosen {
   0% {
     left: 0;
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
   }
   63% {
     left: -66px;
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
   }
   64%, 100% {
     left: -66px;
     transform: rotateY(180deg);
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
   }
 }
 
@@ -338,10 +351,14 @@ $animation-transition: 1s ease-out;
   0% {
     left: -66px;
     transform: rotateY(180deg);
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
   }
   25% {
     left: -66px;
     transform: rotateY(0deg);
+    box-shadow: 0 0 15px #d35400;
+    text-shadow: 0 0 15px #d35400;
   }
   100% {
     left: 0;
