@@ -44,7 +44,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { APIService } from '../APIService';
+const apiService = new APIService();
 
   export default {
     name: "TaskListEdit",
@@ -56,8 +57,7 @@ import axios from 'axios'
       };
     },
     created () {
-      axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-      axios.get(`/task/` + this.taskId)
+      apiService.getTask(this.taskId)
       .then(response => {
         this.task = response.data
       })
@@ -73,8 +73,7 @@ import axios from 'axios'
     methods: {
       onSubmit(evt) {
         evt.preventDefault();
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.put(`/task/` + this.taskId, this.task)
+        apiService.updateTask(this.task)
         .then(response => {
           console.log(response.status);
           this.$router.push({

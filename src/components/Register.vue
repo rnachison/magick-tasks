@@ -31,7 +31,8 @@
 
 <script>
 
-import axios from 'axios'
+import { APIService } from '../APIService';
+const apiService = new APIService();
 
 export default {
   name: 'Register',
@@ -44,7 +45,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      axios.post(`/api/auth/register/`, this.register)
+      apiService.register(this.register)
       .then(response => {
         console.log(response.status);
         alert("Registered successfully")

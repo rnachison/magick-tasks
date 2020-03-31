@@ -47,9 +47,12 @@
 </template>
 
 <script>
-import axios from 'axios';
+
+import { APIService } from '../APIService';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
+
+const apiService = new APIService();
 
 export default {
   name: 'TaskList',
@@ -65,10 +68,9 @@ export default {
     FooterCandles
   },
   created() {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-    axios.get(`/task`)
+    apiService.getTasks()
       .then(response => {
-        this.tasks = response.data
+        this.tasks = response.data;
       })
       .catch(e => {
         this.errors.push(e)
@@ -108,6 +110,7 @@ export default {
 
 $card-width: 225px;
 $card-height: $card-width * $phi;
+$transition: 0.4s ease-out;
 
 .deck-wrapper {
 
@@ -135,7 +138,7 @@ $card-height: $card-width * $phi;
           .card {
             &:hover {
                 transform: translateY(-20px);
-                transition: 0.4s ease-out;
+                transition: $transition;
                 width: $card-width - $card-pull;
             }
           }
@@ -147,7 +150,7 @@ $card-height: $card-width * $phi;
             flex: none;
             height: $card-height;
             width: $card-width;
-            transition: 0.4s ease-out;
+            transition: $transition;
             position: relative;
             margin-left: $card-pull;
             margin-right: 0;
@@ -164,20 +167,22 @@ $card-height: $card-width * $phi;
               // top: 50%;
               // position: fixed;
               z-index: 100;
-              transition: 0.4s ease-out;
+              transition: $transition;
 
               .card-body {
 
                 .front {
                   transform: rotateY(180deg);
-                  transition: 0.4s ease-out;
+                  transition: $transition;
                 }
 
                 .back {
-                  transform: rotateY(0deg);
+                  transform: translate(-50%,-50%) rotateY(0deg);
                   width: $card-width * 2;
                   height: $card-height * 2;
-                  transition: 0.4s ease-out;
+                  max-width: 90%;
+                  max-height: 90%;
+                  transition: $transition;
                 }
               }
             }
@@ -187,23 +192,31 @@ $card-height: $card-width * $phi;
               padding: 0;
 
               .front, .back {
-                  padding: 1.25rem;
-                  height: 100%;
-                  left: 0;
                   position: absolute;
-                  border-radius: 10px;
-                  box-shadow: -1rem 0 3rem #000;
-                  background: $Medieval-Illustrations-4-hex;
+                  left: 0;
+                  height: $card-height;
                   width: $card-width;
-                  transition: 0.4s ease-out;
+                  padding: 1.25rem;
+                  border-radius: 10px;
+                  box-shadow: -1rem -.25rem 3rem #000;
+                  background: $deep-red;
                   -webkit-backface-visibility: hidden;
                   backface-visibility: hidden;
                   transform-style: preserve-3d;
-                  transform: rotateY(0);
+                  transition: $transition;
+              }
+
+              .front {
+                position: absolute;
+                left: 0;
+                transform: rotateY(0);
               }
 
               .back {
-                transform: rotateY(180deg);
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%) rotateY(180deg);
               }
             }
         }

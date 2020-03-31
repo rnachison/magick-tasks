@@ -54,9 +54,12 @@
 </template>
 
 <script>
-import axios from 'axios'
+
+import { APIService } from '../APIService';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
+
+const apiService = new APIService();
 
 export default {
 
@@ -82,8 +85,7 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-      axios.post(`/task`, this.task)
+      apiService.createTask(this.task)
         .then(response => {
           console.log(response.status);
           this.$router.push({

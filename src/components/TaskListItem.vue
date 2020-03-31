@@ -30,7 +30,8 @@
 
 <script>
 
-import axios from 'axios'
+import { APIService } from '../APIService';
+const apiService = new APIService();
 
 export default {
   name: 'TaskListItem',
@@ -42,8 +43,7 @@ export default {
     }
   },
   created () {
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-    axios.get(`/task/` + this.taskId)
+    apiService.getTask(this.taskId)
     .then(response => {
       this.task = response.data
     })
@@ -64,8 +64,7 @@ export default {
       });
     },
     deleteTask(id) {
-      axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
-      axios.delete(`/task/` + id)
+      apiService.deleteTask(id)
       .then(response => {
         console.log(response.status);
         this.$router.push({
