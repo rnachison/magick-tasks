@@ -61,7 +61,9 @@ export default {
   created () {
     this.task.title = this.title;
     this.task.notes = this.notes;
-    this.task.dueDate = new Date(this.dueDate);
+    if (this.dueDate) {
+      this.task.dueDate = new Date(this.dueDate);
+    }
   },
 }
 </script>

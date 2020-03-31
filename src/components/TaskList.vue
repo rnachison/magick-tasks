@@ -227,6 +227,7 @@ $animation-transition: 1s ease-out;
                 top: -20px;
                 transition: $transition;
                 width: $card-width - $card-pull;
+                cursor: pointer;
 
                 .front {
                   box-shadow: 0 0 15px #d35400;
