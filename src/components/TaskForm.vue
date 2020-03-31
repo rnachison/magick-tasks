@@ -25,11 +25,9 @@
     <b-form-group :label-cols="4"
                   breakpoint="md"
                   label="Due">
-      <b-form-datepicker id="dueDate"
-                         v-model="task.dueDate"
-                         label="Due Date"
-                         value-as-date >
-       </b-form-datepicker>
+      <v-date-picker id="dueDate"
+                     v-model="task.dueDate"
+                     is-dark />
     </b-form-group>
     <b-button type="submit"
               variant="primary"
@@ -63,7 +61,7 @@ export default {
   created () {
     this.task.title = this.title;
     this.task.notes = this.notes;
-    this.task.dueDate = this.dueDate;
+    this.task.dueDate = new Date(this.dueDate);
   },
 }
 </script>
