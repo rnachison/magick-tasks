@@ -151,18 +151,18 @@ $animation-transition: 1s ease-out;
 .deck-wrapper {
 
     padding: 60px 0;
-    width: 300px;
+    width: 350px;
 
     @media (min-width: $breakpoint-md) {
-      width: 450px;
+      width: 500px;
     }
 
     @media (min-width: $breakpoint-lg) {
-      width: 625px;
+      width: 675px;
     }
 
     @media (min-width: $breakpoint-xl) {
-      width: 800px;
+      width: 850px;
     }
 
     .card-deck {
