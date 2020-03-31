@@ -11,12 +11,11 @@
       <b-link @click="logout()">(Logout)</b-link>
     </h2>
     <div class="deck-wrapper">
-      <b-card-group deck
-                    :class="{ noneChosen: chosenTask == null }">
+      <b-card-group deck>
         <b-card v-for="(task, index) of tasks"
                 :key="index"
                 @click.stop="chooseTask(index)"
-                :class="{ chosen: chosenTask == index }">
+                :class="[{ chosen: chosenTask == index }, { unchosen: (chosenTask != index && oldTask == index) }]">
           <div class="front">
             <b-card-title>{{task.title}}</b-card-title>
             <b-card-text>
@@ -27,10 +26,6 @@
                 {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
               </div>
             </b-card-text>
-            <!-- <b-button @click.stop="details(task)"
-                      variant="primary">
-                      Details
-            </b-button> -->
           </div>
           <div class="back">
             <TaskForm :title="task.title"
@@ -68,7 +63,8 @@ export default {
     return {
       tasks: [],
       errors: [],
-      chosenTask: null
+      chosenTask: null,
+      oldTask: null
     }
   },
   components: {
@@ -91,23 +87,14 @@ export default {
       })
   },
   methods: {
-    // details(task) {
-    //   if (task == null) {
-    //     return;
-    //   }
-    //   this.$router.push({
-    //     name: 'TaskListItem',
-    //     params: {
-    //       id: task.id
-    //     }
-    //   })
-    // },
     chooseTask(index) {
       //choose task card
+      this.oldTask = null;
       this.chosenTask = index;
     },
     closeTask() {
       //put back task card
+      this.oldTask = this.chosenTask;
       this.chosenTask = null;
     },
     updateTask(task, updatedTask) {
@@ -140,6 +127,7 @@ export default {
 $card-width: 225px;
 $card-height: $card-width * $phi;
 $transition: 0.4s ease-out;
+$animation-transition: 1s ease-out;
 
 #overlay {
   position: fixed;
@@ -182,16 +170,6 @@ $transition: 0.4s ease-out;
         margin-left: 50px;
         padding-left: 15px;
 
-        &.noneChosen {
-          .card {
-            &:hover {
-                transform: translateY(-20px);
-                transition: $transition;
-                width: $card-width - $card-pull;
-            }
-          }
-        }
-
         .card {
             -ms-flex: none;
             -webkit-box-flex: none;
@@ -208,32 +186,6 @@ $transition: 0.4s ease-out;
             z-index: 20;
             top: 0;
             left: 0;
-
-            &.chosen {
-              // left: 50%;
-              // transform: translate(-50%, -50%);
-              // top: 50%;
-              // position: fixed;
-              z-index: 100;
-              transition: $transition;
-
-              .card-body {
-
-                .front {
-                  transform: rotateY(180deg);
-                  transition: $transition;
-                }
-
-                .back {
-                  transform: translate(-50%,-50%) rotateY(0deg);
-                  width: $card-width * 2;
-                  height: $card-height * 2;
-                  max-width: 90%;
-                  max-height: 90%;
-                  transition: $transition;
-                }
-              }
-            }
 
             .card-body {
 
@@ -267,7 +219,153 @@ $transition: 0.4s ease-out;
                 transform: translate(-50%,-50%) rotateY(180deg);
               }
             }
+
+
+            &:hover {
+                top: -20px;
+                transition: $transition;
+                width: $card-width - $card-pull;
+            }
+
+
+            &.chosen {
+              // left: 50%;
+              // transform: translate(-50%, -50%);
+              // top: 50%;
+              // position: fixed;
+              // z-index: 100;
+              // transition: $transition;
+              animation: card-chosen $animation-transition forwards;
+
+              .card-body {
+
+                .front {
+                  // transform: rotateY(180deg);
+                  // transition: $transition;
+                  animation: front-chosen $animation-transition forwards;
+                }
+
+                .back {
+                  // transform: translate(-50%,-50%) rotateY(0deg);
+                  // width: $card-width * 2;
+                  // height: $card-height * 2;
+                  // max-width: 90%;
+                  // max-height: 90%;
+                  // transition: $transition;
+                  animation: back-chosen $animation-transition forwards;
+                }
+              }
+            }
+
+            &.unchosen {
+
+              animation: card-unchosen $animation-transition forwards;
+
+              .front {
+                animation: front-unchosen $animation-transition forwards;
+              }
+
+              .back {
+                animation: back-unchosen $animation-transition forwards;
+              }
+            }
         }
     }
+}
+
+@keyframes card-chosen {
+  0% {
+    top: -20px;
+    width: $card-width - $card-pull;
+  }
+  63% {
+    top: -70px;
+    width: $card-width - $card-pull;
+  }
+  100% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 100;
+  }
+}
+
+@keyframes front-chosen {
+  0% {
+    left: 0;
+  }
+  63% {
+    left: -66px;
+  }
+  64%, 100% {
+    left: -66px;
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes back-chosen {
+  0% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
+  64%, 100% {
+    transform: translate(-50%,-50%) rotateY(0deg);
+    width: $card-width * 2;
+    height: $card-height * 2;
+    max-width: 90%;
+    max-height: 90%;
+  }
+}
+
+@keyframes card-unchosen {
+  0% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 100;
+  }
+  25% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 20;
+  }
+  100% {
+    top: 0px;
+    width: $card-width;
+  }
+}
+
+@keyframes front-unchosen {
+  0% {
+    left: -66px;
+    transform: rotateY(180deg);
+  }
+  25% {
+    left: -66px;
+    transform: rotateY(0deg);
+  }
+  100% {
+    left: 0;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes back-unchosen {
+  0% {
+    transform: translate(-50%,-50%) rotateY(0deg);
+    width: $card-width * 2;
+    height: $card-height * 2;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  25% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
+  100% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
 }
 </style>
