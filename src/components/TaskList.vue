@@ -1,5 +1,9 @@
 <template>
-<div>
+<div id="task-list">
+  <div id="overlay"
+       :class="{ chosen: chosenTask != null }"
+       @click.stop="closeTask()">
+  </div>
   <b-col cols="9">
     <h2>
       Task List
@@ -23,13 +27,16 @@
                 {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
               </div>
             </b-card-text>
-            <b-button @click.stop="details(task)"
+            <!-- <b-button @click.stop="details(task)"
                       variant="primary">
                       Details
-            </b-button>
+            </b-button> -->
           </div>
           <div class="back">
-            <TaskForm :task="task" @submit-task="updateTask" />
+            <TaskForm :title="task.title"
+                      :notes="task.notes"
+                      :dueDate="task.dueDate"
+                      @submit-task="updateTask(task, $event)" />
           </div>
         </b-card>
       </b-card-group>
@@ -84,22 +91,39 @@ export default {
       })
   },
   methods: {
-    details(task) {
-      if (task == null) {
-        return;
-      }
-      this.$router.push({
-        name: 'TaskListItem',
-        params: {
-          id: task.id
-        }
-      })
-    },
+    // details(task) {
+    //   if (task == null) {
+    //     return;
+    //   }
+    //   this.$router.push({
+    //     name: 'TaskListItem',
+    //     params: {
+    //       id: task.id
+    //     }
+    //   })
+    // },
     chooseTask(index) {
-      this.chosenTask = this.chosenTask !== index ? index : null;
+      //choose task card
+      this.chosenTask = index;
     },
-    updateTask() {
-      console.log('UPDATE TASK');
+    closeTask() {
+      //put back task card
+      this.chosenTask = null;
+    },
+    updateTask(task, updatedTask) {
+      task.title = updatedTask.title;
+      task.notes = updatedTask.notes;
+      task.dueDate = updatedTask.dueDate;
+      apiService.updateTask(task)
+      .then(response => {
+        console.log(response.status);
+        //put back task card
+        this.chosenTask = null;
+      })
+      .catch(e => {
+        console.log(e)
+        this.errors.push(e)
+      })
     },
     logout() {
       localStorage.removeItem('jwtToken')
@@ -116,6 +140,25 @@ export default {
 $card-width: 225px;
 $card-height: $card-width * $phi;
 $transition: 0.4s ease-out;
+
+#overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  opacity: 0;
+  transition: $transition;
+  background: #000;
+  pointer-events: none;
+
+  &.chosen {
+    opacity: .5;
+    pointer-events: auto;
+    transition: $transition;
+  }
+}
 
 .deck-wrapper {
 

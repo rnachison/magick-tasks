@@ -1,5 +1,5 @@
 <template>
-  <b-form @submit="$emit('submit-task')">
+  <b-form @submit.prevent="$emit('submit-task', task)">
     <b-form-group :label-cols="4"
                   breakpoint="md"
                   label="Title"
@@ -19,7 +19,7 @@
                        placeholder="Enter notes"
                        :rows="2"
                        :max-rows="6">
-         {{task.notes}}
+         {{notes}}
        </b-form-textarea>
     </b-form-group>
     <b-form-group :label-cols="4"
@@ -43,16 +43,28 @@
 export default {
   name: 'TaskForm',
   props: {
-    task: Object
+    title: String,
+    notes: String,
+    dueDate: Date
+  },
+  data() {
+    return {
+      task: {}
+    }
   },
   computed: {
     state() {
-      return this.task && this.task.title && this.task.title.length ? true : false;
+      return this.title && this.title.length ? true : false;
     },
     invalidFeedback() {
       return 'This field is required';
     }
-  }
+  },
+  created () {
+    this.task.title = this.title;
+    this.task.notes = this.notes;
+    this.task.dueDate = this.dueDate;
+  },
 }
 </script>
 
