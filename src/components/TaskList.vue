@@ -29,7 +29,7 @@
             </b-button>
           </div>
           <div class="back">
-            DISPLAY BACK
+            <TaskForm :task="task" @submit-task="updateTask" />
           </div>
         </b-card>
       </b-card-group>
@@ -51,6 +51,7 @@
 import { APIService } from '../APIService';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
+import TaskForm from './TaskForm.vue';
 
 const apiService = new APIService();
 
@@ -65,7 +66,8 @@ export default {
   },
   components: {
     FooterDesk,
-    FooterCandles
+    FooterCandles,
+    TaskForm
   },
   created() {
     apiService.getTasks()
@@ -95,6 +97,9 @@ export default {
     },
     chooseTask(index) {
       this.chosenTask = this.chosenTask !== index ? index : null;
+    },
+    updateTask() {
+      console.log('UPDATE TASK');
     },
     logout() {
       localStorage.removeItem('jwtToken')

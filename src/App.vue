@@ -16,7 +16,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $Medieval-Illustrations-2-hex;
   background: $Medieval-Illustrations-5-hex;
   margin-top: 60px;
 }
