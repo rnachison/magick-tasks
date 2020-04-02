@@ -127,7 +127,7 @@ export default {
 $card-width: 225px;
 $card-height: $card-width * $phi;
 $transition: 0.4s ease-out;
-$animation-transition: 1s ease-out;
+$animation-transition: 0.8s ease-out;
 
 #overlay {
   position: fixed;
