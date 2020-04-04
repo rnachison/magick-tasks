@@ -18,7 +18,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-color: $Medieval-Illustrations-2-hex;
+  background-color: $wood;
 }
 
 </style>

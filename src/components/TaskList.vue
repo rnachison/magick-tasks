@@ -199,7 +199,7 @@ $animation-transition: 0.8s ease-out;
                   padding: 1.25rem;
                   border-radius: 10px;
                   box-shadow: -1rem -.25rem 3rem #000;
-                  background: $deep-red;
+                  background: $gold;
                   -webkit-backface-visibility: hidden;
                   backface-visibility: hidden;
                   transform-style: preserve-3d;
@@ -216,8 +216,8 @@ $animation-transition: 0.8s ease-out;
                 position: fixed;
                 top: 50%;
                 left: 50%;
-                box-shadow: 0 0 15px #d35400;
-                text-shadow: 0 0 15px #d35400;
+                box-shadow: 0 0 2rem $magic-purple;
+                text-shadow: 0 0 2rem $magic-purple;
                 transform: translate(-50%,-50%) rotateY(180deg);
               }
             }
@@ -230,36 +230,26 @@ $animation-transition: 0.8s ease-out;
                 cursor: pointer;
 
                 .front {
-                  box-shadow: 0 0 15px #d35400;
-                  text-shadow: 0 0 15px #d35400;
+                  box-shadow: 0 0 2rem $magic-purple;
+                  text-shadow: 0 0 2rem $magic-purple;
                 }
             }
 
 
             &.chosen {
-              // left: 50%;
-              // transform: translate(-50%, -50%);
-              // top: 50%;
-              // position: fixed;
-              // z-index: 100;
-              // transition: $transition;
+
               animation: card-chosen $animation-transition forwards;
+              cursor: auto;
 
               .card-body {
 
                 .front {
-                  // transform: rotateY(180deg);
-                  // transition: $transition;
+
                   animation: front-chosen $animation-transition forwards;
                 }
 
                 .back {
-                  // transform: translate(-50%,-50%) rotateY(0deg);
-                  // width: $card-width * 2;
-                  // height: $card-height * 2;
-                  // max-width: 90%;
-                  // max-height: 90%;
-                  // transition: $transition;
+
                   animation: back-chosen $animation-transition forwards;
                 }
               }
@@ -300,19 +290,19 @@ $animation-transition: 0.8s ease-out;
 @keyframes front-chosen {
   0% {
     left: 0;
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
   }
   63% {
     left: -66px;
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
   }
   64%, 100% {
     left: -66px;
     transform: rotateY(180deg);
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
   }
 }
 
@@ -352,14 +342,14 @@ $animation-transition: 0.8s ease-out;
   0% {
     left: -66px;
     transform: rotateY(180deg);
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
   }
   25% {
     left: -66px;
     transform: rotateY(0deg);
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
   }
   100% {
     left: 0;

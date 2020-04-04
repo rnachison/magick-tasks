@@ -12,11 +12,9 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Uncial Antiqua', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: $Medieval-Illustrations-5-hex;
   margin-top: 60px;
 }
 </style>

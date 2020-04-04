@@ -1,10 +1,15 @@
 body {
-  background: $Medieval-Illustrations-5-hex;
-  color: $Medieval-Illustrations-4-hex;
-  font-family: 'Uncial Antiqua', cursive;
+  background: $beige;
+  color: $purple;
+  font-family: $body-font;
 
   h2 {
-    color: $Medieval-Illustrations-3-hex;
+    color: $gold;
+    font-family: $title-font;
+  }
+
+  h4 {
+    font-family: $title-font;
   }
 
   // .btn {
@@ -18,16 +23,22 @@ body {
   // }
 
   .btn {
-    background-color: $Medieval-Illustrations-3-hex;
-    border-color: $Medieval-Illustrations-3-hex;
-    color: $Medieval-Illustrations-5-hex;
+    background-color: $blood-red;
+    border-color: $blood-red;
+    color: $gold;
+
+    &:hover {
+      background-color: $blood-red;
+      border-color: $blood-red;
+      color: $gold;
+    }
   }
 
   a {
-    color: $Medieval-Illustrations-1-hex;
+    color: $blood-red;
 
     &:hover {
-      color: lighten($Medieval-Illustrations-1-hex, 10%);
+      color: lighten($blood-red, 10%);
     }
   }
 

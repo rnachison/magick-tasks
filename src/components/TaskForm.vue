@@ -25,12 +25,12 @@
     <b-form-group :label-cols="4"
                   breakpoint="md"
                   label="Due">
-      <v-date-picker id="dueDate"
+      <v-date-picker class="due-date"
                      v-model="task.dueDate"
-                     is-dark />
+                     is-inline>
+      </v-date-picker>
     </b-form-group>
     <b-button type="submit"
-              variant="primary"
               class="save-button">
               Save
     </b-button>
@@ -68,9 +68,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
-.save-button {
+.due-date {
+
+  &.vc-container {
+    font-family: $body-font;
+
+    .vc-highlight {
+      background-color: $blood-red;
+    }
+  }
+
+}
+
+.btn.save-button {
 
   position: relative;
 
@@ -89,7 +101,7 @@ export default {
   }
 
   &:hover {
-    color: $Medieval-Illustrations-4-hex;
+    color: $magic-orange;
     box-shadow: 0 0 15px #d35400;
     text-shadow: 0 0 15px #d35400;
 
