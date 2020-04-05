@@ -54,7 +54,7 @@ export default {
   props: {
     title: String,
     notes: String,
-    dueDate: String,
+    dueDate: Date,
     isComplete: Boolean,
     index: Number
   },

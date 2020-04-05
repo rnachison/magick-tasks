@@ -18,7 +18,7 @@
       @toggle-change="toggleChange($event)" />
     <div class="deck-wrapper">
       <b-card-group
-        v-if="!showCompleteTasks"
+        v-show="!showCompleteTasks"
         deck>
         <TaskCard
           v-for="task of incompleteTasks"
@@ -30,7 +30,7 @@
           @close-task="closeTask()" />
       </b-card-group>
       <b-card-group
-        v-if="showCompleteTasks"
+        v-show="showCompleteTasks"
         deck>
         <TaskCard
           v-for="task of completeTasks"

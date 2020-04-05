@@ -17,7 +17,7 @@
       <TaskForm
         :title="task.title"
         :notes="task.notes"
-        :dueDate="task.dueDate"
+        :dueDate="dueDate"
         :isComplete="task.isComplete"
         :index="task.id"
         @submit-task="updateTask(task, $event)" />
@@ -43,11 +43,13 @@ export default {
   },
   computed: {
     dueDate () {
-      return this.task.dueDate;
+      return new Date(this.task.dueDate);
     }
   },
   methods: {
     updateTask(task, updatedTask) {
+      //put back task card
+      this.$emit('close-task');
       task.title = updatedTask.title;
       task.notes = updatedTask.notes;
       task.dueDate = updatedTask.dueDate;
@@ -55,8 +57,6 @@ export default {
       apiService.updateTask(task)
       .then(response => {
         console.log(response.status);
-        //put back task card
-        this.$emit('close-task');
       })
       .catch(e => {
         console.log(e)
