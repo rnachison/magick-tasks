@@ -12,7 +12,10 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
         .findAll({
           where: {
             userId: req.user.id
-          }
+          },
+          order: [
+            ['createdAt']
+          ]
         })
         .then(tasks => res.status(200).send(tasks))
         .catch(error => res.status(400).send(error));

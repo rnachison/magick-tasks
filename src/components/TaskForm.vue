@@ -1,35 +1,46 @@
 <template>
   <b-form @submit.prevent="$emit('submit-task', task)">
-    <b-form-group :label-cols="4"
-                  breakpoint="md"
-                  label="Title"
-                  label-for="title"
-                  :invalid-feedback="invalidFeedback"
-                  :state="state">
-      <b-form-input id="title"
-                    v-model.trim="task.title"
-                    :state="state">
+    <b-form-group
+      :label-cols="4"
+      breakpoint="md"
+      label="Title"
+      :label-for="'title-' + index"
+      :invalid-feedback="invalidFeedback"
+      :state="state">
+      <b-form-input
+        :id="'title-' + index"
+        v-model.trim="task.title"
+        :state="state">
       </b-form-input>
     </b-form-group>
-    <b-form-group :label-cols="4"
-                  breakpoint="md"
-                  label="Notes">
-      <b-form-textarea id="notes"
-                       v-model="task.notes"
-                       placeholder="Enter notes"
-                       :rows="2"
-                       :max-rows="6">
-         {{notes}}
-       </b-form-textarea>
+    <b-form-group
+      :label-cols="4"
+      breakpoint="md"
+      label="Notes">
+      <b-form-textarea
+        :id="'notes-' + index"
+        v-model="task.notes"
+        placeholder="Enter notes"
+        :rows="2"
+        :max-rows="6">
+          {{notes}}
+      </b-form-textarea>
     </b-form-group>
-    <b-form-group :label-cols="4"
-                  breakpoint="md"
-                  label="Due">
-      <v-date-picker class="due-date"
-                     v-model="task.dueDate"
-                     is-inline>
+    <b-form-group
+      :label-cols="4"
+      breakpoint="md"
+      label="Due">
+      <v-date-picker
+        class="due-date"
+        v-model="task.dueDate">
       </v-date-picker>
     </b-form-group>
+    <b-form-checkbox
+      :id="'is-complete-' + index"
+      v-model="task.isComplete"
+      name="is-complete">
+      Complete
+    </b-form-checkbox>
     <b-button type="submit"
               class="save-button">
               Save
@@ -43,7 +54,9 @@ export default {
   props: {
     title: String,
     notes: String,
-    dueDate: Date
+    dueDate: Date,
+    isComplete: Boolean,
+    index: Number
   },
   data() {
     return {
@@ -61,9 +74,9 @@ export default {
   created () {
     this.task.title = this.title;
     this.task.notes = this.notes;
-    if (this.dueDate) {
-      this.task.dueDate = new Date(this.dueDate);
-    }
+    this.task.isComplete = this.isComplete;
+    this.dueDate = this.dueDate ? new Date(this.dueDate) : null;
+    this.index = this.index ? this.index : 0;
   },
 }
 </script>
@@ -72,7 +85,7 @@ export default {
 
 .due-date {
 
-  &.vc-container {
+  .vc-container {
     font-family: $body-font;
 
     .vc-highlight {

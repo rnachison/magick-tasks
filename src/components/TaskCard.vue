@@ -1,0 +1,301 @@
+<template lang="html">
+  <b-card
+    @click.stop="$emit('choose-task', task.id)"
+    :class="[{ chosen: isChosen}, { unchosen: isUnchosen }, { completed: task.isComplete }]">
+    <div class="front">
+      <b-card-title>{{task.title}}</b-card-title>
+      <b-card-text>
+        <div>
+          {{task.notes}}
+        </div>
+        <div v-if="task && task.dueDate">
+          {{ task.dueDate | moment("dddd, MMMM Do YYYY") }}
+        </div>
+      </b-card-text>
+    </div>
+    <div class="back">
+      <TaskForm
+        :title="task.title"
+        :notes="task.notes"
+        :dueDate="task.dueDate"
+        :isComplete="task.isComplete"
+        :index="task.id"
+        @submit-task="updateTask(task, $event)" />
+    </div>
+  </b-card>
+</template>
+
+<script>
+import { APIService } from '../APIService';
+import TaskForm from './TaskForm.vue';
+
+const apiService = new APIService();
+
+export default {
+  name: 'TaskCard',
+  props: {
+    task: Object,
+    isChosen: Boolean,
+    isUnchosen: Boolean
+  },
+  components: {
+    TaskForm
+  },
+  methods: {
+    updateTask(task, updatedTask) {
+      task.title = updatedTask.title;
+      task.notes = updatedTask.notes;
+      task.dueDate = updatedTask.dueDate;
+      task.isComplete = updatedTask.isComplete;
+      apiService.updateTask(task)
+      .then(response => {
+        console.log(response.status);
+        //put back task card
+        this.$emit('close-task');
+      })
+      .catch(e => {
+        console.log(e)
+        this.errors.push(e)
+      })
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+
+$card-width: 225px;
+$card-height: $card-width * $phi;
+$animation-transition: 0.8s ease-out;
+
+.deck-wrapper {
+
+  .card-deck {
+
+    .card {
+        -ms-flex: none;
+        -webkit-box-flex: none;
+        flex: none;
+        height: $card-height;
+        width: $card-width;
+        transition: $transition;
+        position: relative;
+        margin-left: $card-pull;
+        margin-right: 0;
+        margin-top: $card-pull / ($phi * $phi * $phi);
+        background: transparent;
+        border: none;
+        z-index: 20;
+        top: 0;
+        left: 0;
+
+        .card-body {
+
+          padding: 0;
+
+          .front, .back {
+              position: absolute;
+              left: 0;
+              height: $card-height;
+              width: $card-width;
+              padding: 1.25rem;
+              border-radius: 10px;
+              box-shadow: -1rem -.25rem 3rem #000;
+              background: $gold;
+              -webkit-backface-visibility: hidden;
+              backface-visibility: hidden;
+              transform-style: preserve-3d;
+              transition: $transition;
+          }
+
+          .front {
+            position: absolute;
+            left: 0;
+            transform: rotateY(0);
+          }
+
+          .back {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 0 2rem $magic-purple;
+            text-shadow: 0 0 2rem $magic-purple;
+            transform: translate(-50%,-50%) rotateY(180deg);
+          }
+        }
+
+
+        &:hover {
+            top: -20px;
+            transition: $transition;
+            width: $card-width - $card-pull;
+            cursor: pointer;
+
+            .front {
+              box-shadow: 0 0 2rem $magic-purple;
+              text-shadow: 0 0 2rem $magic-purple;
+            }
+        }
+
+
+        &.chosen {
+
+          animation: card-chosen $animation-transition forwards;
+          cursor: auto;
+
+          .card-body {
+
+            .front {
+
+              animation: front-chosen $animation-transition forwards;
+            }
+
+            .back {
+
+              animation: back-chosen $animation-transition forwards;
+            }
+          }
+        }
+
+        &.unchosen {
+
+          animation: card-unchosen $animation-transition;
+
+          .front {
+            animation: front-unchosen $animation-transition;
+          }
+
+          .back {
+            animation: back-unchosen $animation-transition;
+          }
+        }
+
+        &.completed {
+
+          .front, .back {
+            background: $blood-red;
+            color: $magic-orange;
+
+            .btn {
+              background-color: $gold;
+              border-color: $gold;
+              color: $blood-red;
+
+              &:hover {
+                background-color: $gold;
+                border-color: $gold;
+                color: $blood-red;
+              }
+            }
+          }
+        }
+    }
+  }
+}
+
+@keyframes card-chosen {
+  0% {
+    top: -20px;
+    width: $card-width - $card-pull;
+  }
+  63% {
+    top: -70px;
+    width: $card-width - $card-pull;
+  }
+  100% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 100;
+  }
+}
+
+@keyframes front-chosen {
+  0% {
+    left: 0;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
+  }
+  63% {
+    left: -66px;
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
+  }
+  64%, 100% {
+    left: -66px;
+    transform: rotateY(180deg);
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
+  }
+}
+
+@keyframes back-chosen {
+  0% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
+  64%, 100% {
+    transform: translate(-50%,-50%) rotateY(0deg);
+    width: $card-width * 2;
+    height: $card-height * 2;
+    max-width: 90%;
+    max-height: 90%;
+  }
+}
+
+@keyframes card-unchosen {
+  0% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 100;
+  }
+  25% {
+    top: -70px;
+    width: $card-width - $card-pull;
+    z-index: 20;
+  }
+  100% {
+    top: 0px;
+    width: $card-width;
+  }
+}
+
+@keyframes front-unchosen {
+  0% {
+    left: -66px;
+    transform: rotateY(180deg);
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
+  }
+  25% {
+    left: -66px;
+    transform: rotateY(0deg);
+    box-shadow: 0 0 2rem $magic-purple;
+    text-shadow: 0 0 2rem $magic-purple;
+  }
+  100% {
+    left: 0;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes back-unchosen {
+  0% {
+    transform: translate(-50%,-50%) rotateY(0deg);
+    width: $card-width * 2;
+    height: $card-height * 2;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  25% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
+  100% {
+    transform: translate(-50%,-50%) rotateY(180deg);
+    width: $card-width;
+    height: $card-height;
+  }
+}
+</style>
