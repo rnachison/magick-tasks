@@ -17,19 +17,20 @@
       :modelValue="showCompleteTasks"
       @toggle-change="toggleChange($event)" />
     <div class="deck-wrapper">
-      <b-card-group
-        v-show="!showCompleteTasks"
-        deck>
+      <transition-group
+        name="task-list"
+        tag="div"
+        class="card-deck">
         <TaskCard
-          v-for="task of incompleteTasks"
+          v-for="task of viewableTasks"
           :key="task.id"
           :task="task"
           :isChosen="chosenTask == task.id"
           :isUnchosen="chosenTask != task.id && oldTask == task.id"
           @choose-task="chooseTask($event)"
           @close-task="closeTask()" />
-      </b-card-group>
-      <b-card-group
+      </transition-group>
+      <!-- <b-card-group
         v-show="showCompleteTasks"
         deck>
         <TaskCard
@@ -40,7 +41,7 @@
           :isUnchosen="chosenTask != task.id && oldTask == task.id"
           @choose-task="chooseTask($event)"
           @close-task="closeTask()" />
-      </b-card-group>
+      </b-card-group> -->
     </div>
     <ul v-if="errors && errors.length">
       <li v-for="error of errors"
@@ -96,23 +97,17 @@ export default {
       })
   },
   computed: {
-    incompleteTasks: function() {
-      let incomplete = [];
+    viewableTasks: function() {
+      let taskArray = [];
       for (let task of this.tasks) {
-        if (!task.isComplete) {
-          incomplete.push(task);
+        if (!this.showCompleteTasks && !task.isComplete) {
+          taskArray.push(task);
+        }
+        if (this.showCompleteTasks && task.isComplete) {
+          taskArray.push(task);
         }
       }
-      return incomplete;
-    },
-    completeTasks: function() {
-      let complete = [];
-      for (let task of this.tasks) {
-        if (task.isComplete) {
-          complete.push(task);
-        }
-      }
-      return complete;
+      return taskArray;
     }
   },
   methods: {

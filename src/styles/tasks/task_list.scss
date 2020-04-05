@@ -39,5 +39,16 @@
         margin-left: 50px;
         padding-left: 15px;
 
+        .task-list-enter-active {
+          transition: 0.4s ease-out 0.4s;
+        }
+        .task-list-leave-active {
+          transition: 0.4s ease-out;
+        }
+        .task-list-enter, .task-list-leave-to /* .task-list-leave-active below version 2.1.8 */ {
+          opacity: 0;
+          transform: translateY(50%);
+        }
+
     }
 }
