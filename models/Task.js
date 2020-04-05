@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     },
     dueDate: DataTypes.DATE,
-    notes: DataTypes.STRING
+    notes: DataTypes.STRING,
+    symbol: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
   }, {});
   Task.associate = function(models) {
     Task.belongsTo(models.User, {

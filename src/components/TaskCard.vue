@@ -3,6 +3,10 @@
     @click.stop="$emit('choose-task', task.id)"
     :class="[{ chosen: isChosen}, { unchosen: isUnchosen }, { completed: task.isComplete }]">
     <div class="front">
+      <img
+        class="symbol"
+        :src="getImgUrl(task.id)"
+        alt="">
       <b-card-title>{{task.title}}</b-card-title>
       <b-card-text>
         <div>
@@ -38,6 +42,11 @@ export default {
     isChosen: Boolean,
     isUnchosen: Boolean
   },
+  data () {
+    return {
+      symbols: ['demon-bottle', 'dragon-bottle', 'eyeball', 'hourglass', 'ouroboros', 'moon', 'skull', 'sun']
+    }
+  },
   components: {
     TaskForm
   },
@@ -62,6 +71,11 @@ export default {
         console.log(e)
         this.errors.push(e)
       })
+    },
+    getImgUrl(id) {
+      var url = require.context('../assets/', false, /\.svg$/);
+      var index = id % this.symbols.length;
+      return url('./' + this.symbols[index] + '.svg');
     }
   }
 }
