@@ -54,7 +54,7 @@ export default {
   props: {
     title: String,
     notes: String,
-    dueDate: Date,
+    dueDate: String,
     isComplete: Boolean,
     index: Number
   },
@@ -75,55 +75,12 @@ export default {
     this.task.title = this.title;
     this.task.notes = this.notes;
     this.task.isComplete = this.isComplete;
-    this.dueDate = this.dueDate ? new Date(this.dueDate) : null;
+    this.task.dueDate = this.dueDate ? new Date(this.dueDate) : null;
     this.index = this.index ? this.index : 0;
   },
 }
 </script>
 
 <style lang="scss">
-
-.due-date {
-
-  .vc-container {
-    font-family: $body-font;
-
-    .vc-highlight {
-      background-color: $blood-red;
-    }
-  }
-
-}
-
-.btn.save-button {
-
-  position: relative;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    // border-radius:50%;
-    background: #d35400;
-    transition: .5s;
-    transform: scale(.9);
-    z-index: -1;
-  }
-
-  &:hover {
-    color: $magic-orange;
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
-
-    &:before {
-      transform: scale(1.2);
-      box-shadow: 0 0 15px #d35400;
-      filter: blur(3px);
-    }
-  }
-}
-
+@import '../styles/tasks/task_form.scss';
 </style>

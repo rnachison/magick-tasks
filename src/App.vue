@@ -11,10 +11,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
-}
+@import "@/styles/_base.scss";
 </style>

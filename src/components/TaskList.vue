@@ -10,10 +10,29 @@
       <b-link href="#/add-task">(Add Task)</b-link>
       <b-link @click="logout()">(Logout)</b-link>
     </h2>
+    <CelestialToggle
+      :onValue="'Completed'"
+      :offValue="'Not Completed'"
+      :index="0"
+      :value="showCompleteTasks" />
     <div class="deck-wrapper">
-      <b-card-group deck>
+      <b-card-group
+        v-if="!showCompleteTasks"
+        deck>
         <TaskCard
           v-for="task of incompleteTasks"
+          :key="task.id"
+          :task="task"
+          :isChosen="chosenTask == task.id"
+          :isUnchosen="chosenTask != task.id && oldTask == task.id"
+          @choose-task="chooseTask($event)"
+          @close-task="closeTask()" />
+      </b-card-group>
+      <b-card-group
+        v-if="showCompleteTasks"
+        deck>
+        <TaskCard
+          v-for="task of completeTasks"
           :key="task.id"
           :task="task"
           :isChosen="chosenTask == task.id"
@@ -37,6 +56,7 @@
 <script>
 
 import { APIService } from '../APIService';
+import CelestialToggle from './CelestialToggle.vue';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
 import TaskCard from './TaskCard.vue';
@@ -50,10 +70,12 @@ export default {
       tasks: [],
       errors: [],
       chosenTask: null,
-      oldTask: null
+      oldTask: null,
+      showCompleteTasks: false
     }
   },
   components: {
+    CelestialToggle,
     FooterDesk,
     FooterCandles,
     TaskCard
@@ -114,49 +136,5 @@ export default {
 </script>
 
 <style lang="scss">
-
-#overlay {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 50;
-  opacity: 0;
-  transition: $transition;
-  background: #000;
-  pointer-events: none;
-
-  &.chosen {
-    opacity: .5;
-    pointer-events: auto;
-    transition: $transition;
-  }
-}
-
-.deck-wrapper {
-
-    padding: 60px 0;
-    width: 350px;
-
-    @media (min-width: $breakpoint-md) {
-      width: 500px;
-    }
-
-    @media (min-width: $breakpoint-lg) {
-      width: 675px;
-    }
-
-    @media (min-width: $breakpoint-xl) {
-      width: 850px;
-    }
-
-    .card-deck {
-
-        margin-left: 50px;
-        padding-left: 15px;
-
-    }
-}
-
+@import '../styles/tasks/task_list.scss';
 </style>
