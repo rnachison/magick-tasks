@@ -14,7 +14,8 @@
       :onValue="'Completed'"
       :offValue="'Not Completed'"
       :index="0"
-      :value="showCompleteTasks" />
+      :modelValue="showCompleteTasks"
+      @toggle-change="toggleChange($event)" />
     <div class="deck-wrapper">
       <b-card-group
         v-if="!showCompleteTasks"
@@ -124,6 +125,14 @@ export default {
       //put back task card
       this.oldTask = this.chosenTask;
       this.chosenTask = null;
+    },
+    clearTasks() {
+      this.oldTask = null;
+      this.chosenTask = null;
+    },
+    toggleChange(emittedValue) {
+      this.clearTasks();
+      this.showCompleteTasks = emittedValue;
     },
     logout() {
       localStorage.removeItem('jwtToken')

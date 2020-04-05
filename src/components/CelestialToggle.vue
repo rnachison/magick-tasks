@@ -3,8 +3,10 @@
     <input
       type="checkbox"
       v-model="value"
+      :value="value"
       class="celestial-toggle"
-      :id="'celestial-toggle-' + index"/>
+      :id="'celestial-toggle-' + index"
+      @change="$emit('toggle-change', value)"/>
     <label
       :for="'celestial-toggle-' + index"
       class="toggle">
@@ -29,8 +31,16 @@ export default {
   props: {
     onValue: String,
     offValue: String,
-    value: Boolean,
+    modelValue: Boolean,
     index: Number
+  },
+  data() {
+    return {
+      value: false
+    }
+  },
+  created () {
+    this.value = this.modelValue;
   },
   computed: {
     cssProps() {
