@@ -1,5 +1,8 @@
 <template>
   <b-row class="justify-content-md-center">
+    <Header
+      :showCredits="false"
+    />
     <b-col cols="6">
       <div v-if="errors && errors.length">
         <div v-for="error of errors" :key="error.message">
@@ -31,6 +34,7 @@
 <script>
 
 import { APIService } from '../APIService';
+import Header from './Header.vue';
 const apiService = new APIService();
 
 export default {
@@ -40,6 +44,9 @@ export default {
       login: {},
       errors: []
     }
+  },
+  components : {
+    Header
   },
   methods: {
     onSubmit (evt) {

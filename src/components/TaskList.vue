@@ -3,6 +3,7 @@
   <Header
     :showLogout="true"
     :showCreate="true"
+    :showCredits="true"
   />
   <div id="overlay"
        :class="{ chosen: chosenTask != null }"

@@ -1,5 +1,9 @@
 <template>
   <div id="add-task">
+    <Header
+      :showLogout="true"
+      :showCredits="true"
+    />
     <b-col cols="9">
       <h2>
         Add Task
@@ -17,6 +21,7 @@
 import { APIService } from '../APIService';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
+import Header from './Header.vue';
 import TaskForm from './TaskForm.vue';
 
 const apiService = new APIService();
@@ -27,6 +32,7 @@ export default {
   components: {
     FooterDesk,
     FooterCandles,
+    Header,
     TaskForm
   },
   methods: {

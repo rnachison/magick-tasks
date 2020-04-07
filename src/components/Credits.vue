@@ -1,5 +1,6 @@
 <template>
 <div class="credits-container">
+  <Header />
   <div class="">
     Created by:
     <b-link href="https://rebecca-nachison.herokuapp.com/">Rebecca Nachison</b-link>
@@ -24,8 +25,14 @@
 </template>
 
 <script>
+
+import Header from './Header.vue';
+
 export default {
-  name: 'Credits'
+  name: 'Credits',
+  components: {
+    Header
+  }
 }
 </script>
 
