@@ -1,21 +1,21 @@
 <template>
 <div id="task-list">
+  <Header
+    :showLogout="true"
+    :showCreate="true"
+  />
   <div id="overlay"
        :class="{ chosen: chosenTask != null }"
        @click.stop="closeTask()">
   </div>
   <b-col cols="9">
-    <h2>
-      Task List
-      <b-link href="#/add-task">(Add Task)</b-link>
-      <b-link @click="logout()">(Logout)</b-link>
-    </h2>
     <CelestialToggle
       :onValue="'Completed'"
       :offValue="'Not Completed'"
       :index="0"
       :modelValue="showCompleteTasks"
-      @toggle-change="toggleChange($event)" />
+      @toggle-change="toggleChange($event)"
+    />
     <div class="deck-wrapper">
       <transition-group
         name="task-list"
@@ -30,18 +30,6 @@
           @choose-task="chooseTask($event)"
           @close-task="closeTask()" />
       </transition-group>
-      <!-- <b-card-group
-        v-show="showCompleteTasks"
-        deck>
-        <TaskCard
-          v-for="task of completeTasks"
-          :key="task.id"
-          :task="task"
-          :isChosen="chosenTask == task.id"
-          :isUnchosen="chosenTask != task.id && oldTask == task.id"
-          @choose-task="chooseTask($event)"
-          @close-task="closeTask()" />
-      </b-card-group> -->
     </div>
     <ul v-if="errors && errors.length">
       <li v-for="error of errors"
@@ -61,6 +49,7 @@ import { APIService } from '../APIService';
 import CelestialToggle from './CelestialToggle.vue';
 import FooterDesk from './FooterDesk.vue';
 import FooterCandles from './FooterCandles.vue';
+import Header from './Header.vue';
 import TaskCard from './TaskCard.vue';
 
 const apiService = new APIService();
@@ -80,6 +69,7 @@ export default {
     CelestialToggle,
     FooterDesk,
     FooterCandles,
+    Header,
     TaskCard
   },
   created() {
@@ -128,12 +118,6 @@ export default {
     toggleChange(emittedValue) {
       this.clearTasks();
       this.showCompleteTasks = emittedValue;
-    },
-    logout() {
-      localStorage.removeItem('jwtToken')
-      this.$router.push({
-        name: 'Login'
-      })
     }
   }
 }

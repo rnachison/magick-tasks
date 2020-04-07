@@ -5,6 +5,7 @@ import TaskListEdit from '@/components/TaskListEdit'
 import TaskListItem from '@/components/TaskListItem'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Credits from '@/components/Credits'
 
 export default new Router({
   routes: [
@@ -37,6 +38,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/credits',
+      name: 'Credits',
+      component: Credits
     }
   ]
 })

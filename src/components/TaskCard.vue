@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     dueDate () {
-      return new Date(this.task.dueDate);
+      return this.task.dueDate ? new Date(this.task.dueDate) : null;
     }
   },
   methods: {

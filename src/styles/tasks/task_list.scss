@@ -42,7 +42,7 @@
         .task-list-enter-active {
           transition: 0.4s ease-out 0.4s;
         }
-        .task-list-leave-active {
+        .task-list-leave-active, .task-list-move {
           transition: 0.4s ease-out;
         }
         .task-list-enter, .task-list-leave-to /* .task-list-leave-active below version 2.1.8 */ {
