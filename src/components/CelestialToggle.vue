@@ -5,10 +5,10 @@
       v-model="value"
       :value="value"
       class="celestial-toggle"
-      :id="'celestial-toggle-' + index"
+      :id="'celestial-toggle-' + id"
       @change="$emit('toggle-change', value)"/>
     <label
-      :for="'celestial-toggle-' + index"
+      :for="'celestial-toggle-' + id"
       class="toggle">
       <span class="toggle__handler">
         <span class="crater crater--1"></span>
@@ -32,7 +32,7 @@ export default {
     onValue: String,
     offValue: String,
     modelValue: Boolean,
-    index: Number
+    id: Number
   },
   data() {
     return {

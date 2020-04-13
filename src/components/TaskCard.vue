@@ -23,8 +23,9 @@
         :notes="task.notes"
         :dueDate="dueDate"
         :isComplete="task.isComplete"
-        :index="task.id"
-        @submit-task="updateTask(task, $event)" />
+        :id="task.id"
+        @submit-task="updateTask(task, $event)"
+        @delete-task="deleteTask($event)" />
     </div>
   </b-card>
 </template>
@@ -70,6 +71,25 @@ export default {
       .catch(e => {
         console.log(e)
         this.errors.push(e)
+      })
+    },
+    deleteTask(id) {
+      var isConfirm = confirm('Destroy task?');
+      if (!isConfirm) {
+        return false;
+      }
+      this.$emit('close-task');
+      apiService.deleteTask(id)
+      .then(response => {
+        console.log(response.status);
+        this.$emit('delete-task', id);
+      })
+      .catch(e => {
+        if(e.response.status === 401) {
+          this.$router.push({
+            name: 'Login'
+          })
+        }
       })
     },
     getImgUrl(id) {

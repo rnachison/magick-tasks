@@ -4,11 +4,11 @@
       :label-cols="4"
       breakpoint="md"
       label="Title"
-      :label-for="'title-' + index"
+      :label-for="'title-' + id"
       :invalid-feedback="invalidFeedback"
       :state="state">
       <b-form-input
-        :id="'title-' + index"
+        :id="'title-' + id"
         v-model.trim="task.title"
         :state="state">
       </b-form-input>
@@ -18,7 +18,7 @@
       breakpoint="md"
       label="Notes">
       <b-form-textarea
-        :id="'notes-' + index"
+        :id="'notes-' + id"
         v-model="task.notes"
         placeholder="Enter notes"
         :rows="2"
@@ -36,7 +36,7 @@
       </v-date-picker>
     </b-form-group>
     <b-form-checkbox
-      :id="'is-complete-' + index"
+      :id="'is-complete-' + id"
       v-model="task.isComplete"
       name="is-complete">
       Complete
@@ -44,6 +44,11 @@
     <b-button type="submit"
               class="save-button">
               Save
+    </b-button>
+    <b-button
+      variant="danger"
+      @click.stop="$emit('delete-task', id)">
+      Delete
     </b-button>
   </b-form>
 </template>
@@ -56,7 +61,7 @@ export default {
     notes: String,
     dueDate: Date,
     isComplete: Boolean,
-    index: Number
+    id: Number
   },
   data() {
     return {
@@ -76,7 +81,7 @@ export default {
     this.task.notes = this.notes;
     this.task.isComplete = this.isComplete;
     this.task.dueDate = this.dueDate ? new Date(this.dueDate) : null;
-    this.index = this.index ? this.index : 0;
+    this.id = this.id ? this.id : 0;
   },
 }
 </script>

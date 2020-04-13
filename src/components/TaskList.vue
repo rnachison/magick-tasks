@@ -13,7 +13,7 @@
     <CelestialToggle
       :onValue="'Completed'"
       :offValue="'Not Completed'"
-      :index="0"
+      :id="0"
       :modelValue="showCompleteTasks"
       @toggle-change="toggleChange($event)"
     />
@@ -29,7 +29,8 @@
           :isChosen="chosenTask == task.id"
           :isUnchosen="chosenTask != task.id && oldTask == task.id"
           @choose-task="chooseTask($event)"
-          @close-task="closeTask()" />
+          @close-task="closeTask()"
+          @delete-task="deleteTask($event)" />
       </transition-group>
     </div>
     <ul v-if="errors && errors.length">
@@ -102,10 +103,10 @@ export default {
     }
   },
   methods: {
-    chooseTask(index) {
+    chooseTask(id) {
       //choose task card
       this.oldTask = null;
-      this.chosenTask = index;
+      this.chosenTask = id;
     },
     closeTask() {
       //put back task card
@@ -115,6 +116,14 @@ export default {
     clearTasks() {
       this.oldTask = null;
       this.chosenTask = null;
+    },
+    deleteTask(id) {
+      for (var i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].id == id) {
+          this.tasks.splice(i, 1);
+          return;
+        }
+      }
     },
     toggleChange(emittedValue) {
       this.clearTasks();
