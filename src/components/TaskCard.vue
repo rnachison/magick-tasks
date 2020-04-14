@@ -9,7 +9,7 @@
         alt="">
       <b-card-title>{{task.title}}</b-card-title>
       <b-card-text>
-        <div>
+        <div class="task-notes">
           {{task.notes}}
         </div>
         <div v-if="dueDate">

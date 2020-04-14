@@ -36,7 +36,7 @@ $animation-transition: 0.8s ease-out;
               padding: 1.25rem;
               border-radius: 10px;
               box-shadow: -1rem -.25rem 3rem #000;
-              background: $gold;
+              background: $midnight-purple;
               -webkit-backface-visibility: hidden;
               backface-visibility: hidden;
               transform-style: preserve-3d;
@@ -54,6 +54,10 @@ $animation-transition: 0.8s ease-out;
               left: 0px;
               top: 0;
               transform: translate(-37%,-37%);
+            }
+
+            .task-notes {
+              white-space: pre-line;
             }
           }
 
