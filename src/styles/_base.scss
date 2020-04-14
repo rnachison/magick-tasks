@@ -1,60 +1,67 @@
-body {
-  background: $deep-purple;
-  color: $purple;
-  font-family: $body-font;
-  font-size: 14px;
+html {
+  height: 100%;
+  width: 100%;
 
-  #app {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    padding-top: 60px;
+  body {
+    height: 100%
+    width: 100%;
     background: $deep-purple;
     color: $purple;
     font-family: $body-font;
     font-size: 14px;
-    height: 100%;
-    width: 100%;
 
-    h1, h2 {
-      color: $gold;
-      font-family: $title-font;
-    }
+    #app {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      padding-top: 60px;
+      background: $deep-purple;
+      color: $purple;
+      font-family: $body-font;
+      font-size: 14px;
+      height: 100%;
+      width: 100%;
 
-    h4 {
-      font-family: $title-font;
-      font-size: 1.5em;
-    }
+      h1, h2 {
+        color: $gold;
+        font-family: $title-font;
+      }
 
-    // .btn {
-    //   background-color: $Medieval-Illustrations-1-hex;
-    //   border-color: $Medieval-Illustrations-1-hex;
-    //
-    //   &:hover {
-    //     background-color: lighten($Medieval-Illustrations-1-hex, 10%);
-    //     border-color: lighten($Medieval-Illustrations-1-hex, 10%);
-    //   }
-    // }
+      h4 {
+        font-family: $title-font;
+        font-size: 1.5em;
+      }
 
-    .btn {
-      background-color: $blood-red;
-      border-color: $blood-red;
-      color: $gold;
+      // .btn {
+      //   background-color: $Medieval-Illustrations-1-hex;
+      //   border-color: $Medieval-Illustrations-1-hex;
+      //
+      //   &:hover {
+      //     background-color: lighten($Medieval-Illustrations-1-hex, 10%);
+      //     border-color: lighten($Medieval-Illustrations-1-hex, 10%);
+      //   }
+      // }
 
-      &:hover {
+      .btn {
         background-color: $blood-red;
         border-color: $blood-red;
         color: $gold;
+
+        &:hover {
+          background-color: $blood-red;
+          border-color: $blood-red;
+          color: $gold;
+        }
+      }
+
+      a {
+        color: $blood-red;
+
+        &:hover {
+          color: lighten($blood-red, 10%);
+        }
       }
     }
 
-    a {
-      color: $blood-red;
-
-      &:hover {
-        color: lighten($blood-red, 10%);
-      }
-    }
   }
-
 }
