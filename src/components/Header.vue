@@ -52,7 +52,8 @@ export default {
   .header-container {
 
     .navbar {
-      // background: rgba(0,0,0,.63);
+      background: rgba(0,0,0,.63);
+      z-index: 50;
     }
   }
 

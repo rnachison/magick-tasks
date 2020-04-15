@@ -185,7 +185,7 @@ export default {
   z-index: 0;
   width: 2px;
   height: 2px;
-  transform: translate3d(3px,0,0);
+  transform: translateX(3px);
 }
 
 .star--5 {
@@ -194,7 +194,7 @@ export default {
   z-index: 0;
   width: 3px;
   height: 3px;
-  transform: translate3d(3px,0,0);
+  transform: translateX(3px);
 }
 
 .star--6 {
@@ -203,7 +203,7 @@ export default {
   z-index: 0;
   width: 2px;
   height: 2px;
-  transform: translate3d(3px,0,0);
+  transform: translateX(3px);
 }
 
 input:checked {
@@ -220,7 +220,7 @@ input:checked {
 
     .toggle__handler {
       background-color: $moon;
-      transform: translate3d(40px, 0, 0) rotate(0);
+      transform: translateX(40px) rotate(0);
 
       .crater { opacity: 1; }
     }
@@ -233,20 +233,20 @@ input:checked {
     .star--2 {
       width: 4px;
       height: 4px;
-      transform: translate3d(-5px, 0, 0);
+      transform: translateX(-5px);
     }
 
     .star--3 {
       width: 2px;
       height: 2px;
-      transform: translate3d(-7px, 0, 0);
+      transform: translateX(-7px);
     }
 
     .star--4,
     .star--5,
     .star--6 {
       opacity: 1;
-      transform: translate3d(0,0,0);
+      transform: translateX(0);
     }
     .star--4 {
       transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);

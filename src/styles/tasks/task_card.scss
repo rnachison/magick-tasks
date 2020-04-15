@@ -47,6 +47,7 @@ $animation-transition: 0.8s ease-out;
             position: absolute;
             left: 0;
             transform: rotateY(0);
+            transform-style: flat;
 
             .symbol {
               position: absolute;
