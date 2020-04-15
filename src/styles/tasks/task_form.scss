@@ -1,41 +1,65 @@
-.due-date {
+.form-container {
+  .due-date {
 
-  .vc-container {
-    font-family: $body-font;
+    .vc-container {
+      font-family: $body-font;
 
-    .vc-highlight {
-      background-color: $blood-red;
+      .vc-highlight {
+        background-color: $blood-red;
+      }
     }
+
   }
 
-}
+  .button-wrapper {
 
-.btn.save-button {
+    margin: 10px auto;
 
-  position: relative;
+    .btn {
 
-  &:before {
-    content: '';
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: #d35400;
-    transition: .5s;
-    transform: scale(.9);
-    z-index: -1;
-  }
+      &.save-button {
 
-  &:hover {
-    color: $magic-orange;
-    box-shadow: 0 0 15px #d35400;
-    text-shadow: 0 0 15px #d35400;
+        position: relative;
 
-    &:before {
-      transform: scale(1.2);
-      box-shadow: 0 0 15px #d35400;
-      filter: blur(3px);
+        &:before {
+          content: '';
+          position: absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background: #d35400;
+          transition: .5s;
+          transform: scale(.9);
+          z-index: -1;
+        }
+
+        &:hover {
+          color: $magic-orange;
+          box-shadow: 0 0 15px #d35400;
+          text-shadow: 0 0 15px #d35400;
+
+          &:before {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px #d35400;
+            filter: blur(3px);
+          }
+        }
+      }
+
+      &.destroy-button {
+        &:hover {
+          color: $magic-purple !important;
+          box-shadow: 0 0 20px $magic-purple;
+          // text-shadow: 0 0 20px $magic-purple;
+
+          &:before {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px $magic-purple;
+            filter: blur(3px);
+          }
+        }
+      }
     }
   }
 }

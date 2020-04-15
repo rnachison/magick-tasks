@@ -1,5 +1,7 @@
 <template>
-  <b-form @submit.prevent="$emit('submit-task', task)">
+  <b-form
+    class="form-container"
+    @submit.prevent="$emit('submit-task', task)">
     <b-form-group
       :label-cols="4"
       breakpoint="md"
@@ -35,25 +37,43 @@
         v-model="task.dueDate">
       </v-date-picker>
     </b-form-group>
-    <b-form-checkbox
+    <CelestialToggle
+      :onValue="'Completed'"
+      :offValue="'Not Completed'"
+      :id="id"
+      :modelValue="task.isComplete"
+    />
+    <!-- <b-form-checkbox
       :id="'is-complete-' + id"
       v-model="task.isComplete"
       name="is-complete">
       Complete
-    </b-form-checkbox>
-    <b-button type="submit"
-              class="save-button">
-              Save
-    </b-button>
-    <b-button
-      variant="danger"
-      @click.stop="$emit('delete-task', id)">
-      Delete
-    </b-button>
+    </b-form-checkbox> -->
+    <b-form-group
+      breakpoint="md">
+      <div class="button-wrapper">
+        <b-button
+          type="submit"
+          class="save-button">
+                  Save
+        </b-button>
+      </div>
+      <div class="button-wrapper">
+        <b-button
+          variant="danger"
+          @click.stop="$emit('delete-task', id)"
+          class="destroy-button">
+          Destroy
+        </b-button>
+      </div>
+    </b-form-group>
   </b-form>
 </template>
 
 <script>
+
+import CelestialToggle from './CelestialToggle.vue';
+
 export default {
   name: 'TaskForm',
   props: {
@@ -67,6 +87,9 @@ export default {
     return {
       task: {}
     }
+  },
+  components: {
+    CelestialToggle
   },
   computed: {
     state() {
