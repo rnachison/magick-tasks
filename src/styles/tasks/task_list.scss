@@ -12,7 +12,7 @@
     pointer-events: none;
 
     &.chosen {
-      opacity: .5;
+      opacity: 0.5;
       pointer-events: auto;
       transition: $transition;
     }
@@ -26,38 +26,41 @@
 
   .deck-wrapper {
 
-      padding: 60px 0;
-      width: 350px;
+    // $row-length: (100% + (2 * $card-pull)) / ($card-width + $card-pull);
 
-      @media (min-width: $breakpoint-md) {
-        width: 500px;
+    padding: 60px 0;
+    //get width for max number of cards that can fit per row
+    width: calc(#{$card-width} * ((100% + (2 * #{$card-pull})) / (#{$card-width} + #{$card-pull})) - (#{$card-pull} * ((100% + (2 * #{$card-pull})) / (#{$card-width} + #{$card-pull})) + (3 * #{$card-pull}));
+
+    // @media (min-width: $breakpoint-md) {
+    //   width: 500px;
+    // }
+    // @media (min-width: $breakpoint-lg) {
+    //   width: 675px;
+    // }
+    // @media (min-width: $breakpoint-xl) {
+    //   width: 850px;
+    // }
+
+    .card-deck {
+      margin-left: 50px;
+      padding-left: 15px;
+
+      .task-list-enter-active {
+        transition: 0.4s ease-out 0.4s;
       }
 
-      @media (min-width: $breakpoint-lg) {
-        width: 675px;
+      .task-list-leave-active,
+      .task-list-move {
+        transition: 0.4s ease-out;
       }
-
-      @media (min-width: $breakpoint-xl) {
-        width: 850px;
+      /* .task-list-leave-active below version 2.1.8 */
+      .task-list-enter,
+      .task-list-leave-to {
+        opacity: 0;
+        width: 0;
+        transform: translateY(50%);
       }
-
-      .card-deck {
-
-          margin-left: 50px;
-          padding-left: 15px;
-
-          .task-list-enter-active {
-            transition: 0.4s ease-out 0.4s;
-          }
-          .task-list-leave-active, .task-list-move {
-            transition: 0.4s ease-out;
-          }
-          .task-list-enter, .task-list-leave-to /* .task-list-leave-active below version 2.1.8 */ {
-            opacity: 0;
-            width: 0;
-            transform: translateY(50%);
-          }
-
-      }
+    }
   }
 }
