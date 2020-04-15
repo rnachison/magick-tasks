@@ -26,11 +26,12 @@
 
   .deck-wrapper {
 
-    // $row-length: (100% + (2 * $card-pull)) / ($card-width + $card-pull);
+    // $row-length: ((100% + (2 * $card-pull)) / ($card-width + $card-pull));
 
     padding: 60px 0;
     //get width for max number of cards that can fit per row
-    width: calc(#{$card-width} * ((100% + (2 * #{$card-pull})) / (#{$card-width-int} + #{$card-pull-int})) - (#{$card-pull} * ((100% + (2 * #{$card-pull})) / (#{$card-width-int} + #{$card-pull-int})) + (3 * #{$card-pull}));
+    // width: calc(#{$card-width} * ((100% + (2 * #{$card-pull})) / (#{$card-width-int} + #{$card-pull-int})) - (#{$card-pull} * ((100% + (2 * #{$card-pull})) / (#{$card-width-int} + #{$card-pull-int})) + (3 * #{$card-pull}));
+    width: calc( (#{$card-width} - #{$card-pull}) * ((100% + (2 * $card-pull)) / ($card-width + $card-pull)) + (3 * #{$card-pull}));
 
     // @media (min-width: $breakpoint-md) {
     //   width: 500px;
