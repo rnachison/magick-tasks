@@ -42,6 +42,7 @@
       :offValue="'Not Completed'"
       :id="id"
       :modelValue="task.isComplete"
+      @toggle-change="toggleComplete($event)"
     />
     <!-- <b-form-checkbox
       :id="'is-complete-' + id"
@@ -106,6 +107,11 @@ export default {
     this.task.dueDate = this.dueDate ? new Date(this.dueDate) : null;
     this.id = this.id ? this.id : 0;
   },
+  methods: {
+    toggleComplete(isComplete) {
+      this.task.isComplete = isComplete;
+    }
+  }
 }
 </script>
 

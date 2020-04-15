@@ -13,9 +13,10 @@
     <CelestialToggle
       :onValue="'Completed'"
       :offValue="'Not Completed'"
-      :id="0"
+      :id="tasks.length"
       :modelValue="showCompleteTasks"
       @toggle-change="toggleChange($event)"
+      class="show-complete-toggle"
     />
     <div class="deck-wrapper">
       <transition-group
