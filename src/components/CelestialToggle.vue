@@ -72,7 +72,7 @@ export default {
   position: relative;
   width: 90px;
   height: 50px;
-  background-color: $day-blue;
+  // background-color: $day-blue;
   border-radius: 90px - 6;
   transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
@@ -208,7 +208,7 @@ export default {
 
 input:checked {
   + .toggle {
-    background-color: $midnight-purple;
+    // background-color: $midnight-purple;
 
     &:before {
       color: $wood;

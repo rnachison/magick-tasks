@@ -1,7 +1,9 @@
 <template>
   <div class="header-container">
     <b-navbar type="light" fixed="top">
-      <b-navbar-brand href="/">Tasks</b-navbar-brand>
+      <h1>
+        <b-navbar-brand href="/">Tasks</b-navbar-brand>
+      </h1>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
@@ -17,9 +19,9 @@
             </b-nav-item>
           </span>
           <span v-if="showLogout">
-            <b-button @click="logout()">
+            <b-nav-item @click="logout()">
               Logout
-          </b-button>
+          </b-nav-item>
           </span>
         </b-navbar-nav>
     </b-navbar>
@@ -46,4 +48,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+  .header-container {
+
+    .navbar {
+      background: rgba(0,0,0,.63);
+    }
+  }
+
 </style>

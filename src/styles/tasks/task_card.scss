@@ -65,8 +65,8 @@ $animation-transition: 0.8s ease-out;
             position: fixed;
             top: 50%;
             left: 50%;
-            box-shadow: 0 0 2rem $magic-purple;
-            text-shadow: 0 0 2rem $magic-purple;
+            box-shadow: 0 0 2rem $magic-orange;
+            text-shadow: 0 0 2rem $magic-orange;
             transform: translate(-50%,-50%) rotateY(180deg);
           }
         }
@@ -79,8 +79,8 @@ $animation-transition: 0.8s ease-out;
             cursor: pointer;
 
             .front {
-              box-shadow: 0 0 2rem $magic-purple;
-              text-shadow: 0 0 2rem $magic-purple;
+              box-shadow: 0 0 2rem $magic-orange;
+              text-shadow: 0 0 2rem $magic-orange;
             }
         }
 
@@ -159,19 +159,19 @@ $animation-transition: 0.8s ease-out;
 @keyframes front-chosen {
   0% {
     left: 0;
-    box-shadow: 0 0 2rem $magic-purple;
-    text-shadow: 0 0 2rem $magic-purple;
+    box-shadow: 0 0 2rem $magic-orange;
+    text-shadow: 0 0 2rem $magic-orange;
   }
   63% {
     left: -66px;
-    box-shadow: 0 0 2rem $magic-purple;
-    text-shadow: 0 0 2rem $magic-purple;
+    box-shadow: 0 0 2rem $magic-orange;
+    text-shadow: 0 0 2rem $magic-orange;
   }
   64%, 100% {
     left: -66px;
     transform: rotateY(180deg);
-    box-shadow: 0 0 2rem $magic-purple;
-    text-shadow: 0 0 2rem $magic-purple;
+    box-shadow: 0 0 2rem $magic-orange;
+    text-shadow: 0 0 2rem $magic-orange;
   }
 }
 
@@ -211,14 +211,14 @@ $animation-transition: 0.8s ease-out;
   0% {
     left: -66px;
     transform: rotateY(180deg);
-    box-shadow: 0 0 2rem $magic-purple;
-    text-shadow: 0 0 2rem $magic-purple;
+    box-shadow: 0 0 2rem $magic-orange;
+    text-shadow: 0 0 2rem $magic-orange;
   }
   25% {
     left: -66px;
     transform: rotateY(0deg);
-    box-shadow: 0 0 2rem $magic-purple;
-    text-shadow: 0 0 2rem $magic-purple;
+    box-shadow: 0 0 2rem $magic-orange;
+    text-shadow: 0 0 2rem $magic-orange;
   }
   100% {
     left: 0;
