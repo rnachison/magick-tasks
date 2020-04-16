@@ -1,13 +1,13 @@
 import Router from 'vue-router'
 import TaskList from '@/components/TaskList'
 import TaskListCreate from '@/components/TaskListCreate'
-import TaskListEdit from '@/components/TaskListEdit'
+// import TaskListEdit from '@/components/TaskListEdit'
 import TaskListItem from '@/components/TaskListItem'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Credits from '@/components/Credits'
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -17,13 +17,16 @@ export default new Router({
     {
       path: '/add-task',
       name: 'TaskListCreate',
-      component: TaskListCreate
+      component: TaskListCreate,
+      meta: {
+        title: 'Add Task'
+      }
     },
-    {
-      path: '/edit-task/:id',
-      name: 'TaskListEdit',
-      component: TaskListEdit
-    },
+    // {
+    //   path: '/edit-task/:id',
+    //   name: 'TaskListEdit',
+    //   component: TaskListEdit
+    // },
     {
       path: '/view-task/:id',
       name: 'TaskListItem',
@@ -46,3 +49,10 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Magick Tasks';
+  next();
+});
+
+export default router
