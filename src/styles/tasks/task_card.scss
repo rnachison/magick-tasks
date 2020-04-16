@@ -50,9 +50,9 @@ $animation-transition: 0.8s ease-out;
             .symbol {
               position: absolute;
               height: 60px;
-              left: 0px;
+              left: 50%;
               top: 0;
-              transform: translate(-37%,-37%);
+              transform: translate(-50%,-63%);
             }
 
             .task-notes {
