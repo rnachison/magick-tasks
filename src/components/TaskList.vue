@@ -9,7 +9,10 @@
        :class="{ chosen: chosenTask != null }"
        @click.stop="closeTask()">
   </div>
-  <b-col cols="9">
+  <b-col
+    cols="9"
+    ref="deckContainer"
+    :style="cssProps">
     <CelestialToggle
       :onValue="'Completed'"
       :offValue="'Not Completed'"
@@ -65,7 +68,8 @@ export default {
       errors: [],
       chosenTask: null,
       oldTask: null,
-      showCompleteTasks: false
+      showCompleteTasks: false,
+      rowLength: 0
     }
   },
   components: {
@@ -89,6 +93,10 @@ export default {
         }
       })
   },
+  mounted () {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
   computed: {
     viewableTasks: function() {
       let taskArray = [];
@@ -101,6 +109,11 @@ export default {
         }
       }
       return taskArray;
+    },
+    cssProps() {
+      return {
+        '--row-length': this.rowLength
+      }
     }
   },
   methods: {
@@ -129,7 +142,14 @@ export default {
     toggleChange(emittedValue) {
       this.clearTasks();
       this.showCompleteTasks = emittedValue;
+    },
+    handleResize() {
+      var deckContainerWidth = this.$refs.deckContainer.clientWidth;
+      this.rowLength = Math.floor((deckContainerWidth - 100) / 175);
     }
+  },
+  destroyed() {
+      window.removeEventListener('resize', this.handleResize);
   }
 }
 </script>
