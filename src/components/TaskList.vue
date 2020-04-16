@@ -34,7 +34,7 @@
           :isUnchosen="chosenTask != task.id && oldTask == task.id"
           @choose-task="chooseTask($event)"
           @close-task="closeTask()"
-          @delete-task="deleteTask($event)" />
+          @discard-task="discardTask($event)" />
       </transition-group>
     </div>
     <ul v-if="errors && errors.length">
@@ -131,7 +131,7 @@ export default {
       this.oldTask = null;
       this.chosenTask = null;
     },
-    deleteTask(id) {
+    discardTask(id) {
       for (var i = 0; i < this.tasks.length; i++) {
         if (this.tasks[i].id == id) {
           this.tasks.splice(i, 1);

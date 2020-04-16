@@ -7,9 +7,10 @@
     <b-col cols="9">
       <h2>
         Add Task
-        <b-link href="#/">(Task List)</b-link>
       </h2>
-      <TaskForm @submit-task="createTask($event)" />
+      <TaskForm
+        @submit-task="createTask($event)"
+        @discard-task="discardTask()" />
     </b-col>
     <FooterCandles />
     <FooterDesk />
@@ -48,6 +49,11 @@ export default {
           console.log(e)
           this.errors.push(e)
         })
+    },
+    discardTask() {
+      this.$router.push({
+        name: 'TaskList'
+      })
     }
   }
 }

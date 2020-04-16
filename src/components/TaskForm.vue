@@ -62,9 +62,9 @@
       <div class="button-wrapper">
         <b-button
           variant="danger"
-          @click.stop="$emit('delete-task', id)"
+          @click.stop="$emit('discard-task', id)"
           class="destroy-button">
-          Destroy
+          Discard
         </b-button>
       </div>
     </b-form-group>

@@ -25,7 +25,7 @@
         :isComplete="task.isComplete"
         :id="task.id"
         @submit-task="updateTask(task, $event)"
-        @delete-task="deleteTask($event)" />
+        @discard-task="discardTask($event)" />
     </div>
   </b-card>
 </template>
@@ -73,8 +73,8 @@ export default {
         this.errors.push(e)
       })
     },
-    deleteTask(id) {
-      var isConfirm = confirm('Destroy task?');
+    discardTask(id) {
+      var isConfirm = confirm('Discarding will permanently destroy task');
       if (!isConfirm) {
         return false;
       }
@@ -82,7 +82,7 @@ export default {
       apiService.deleteTask(id)
       .then(response => {
         console.log(response.status);
-        this.$emit('delete-task', id);
+        this.$emit('discard-task', id);
       })
       .catch(e => {
         if(e.response.status === 401) {
