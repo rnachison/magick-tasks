@@ -125,16 +125,21 @@ $animation-transition: 0.8s ease-out;
             color: $magic-orange;
 
             .btn {
-              background-color: $gold;
-              border-color: $gold;
+              background-color: $moon;
+              border-color: $moon;
               color: $blood-red;
 
               &:hover {
-                background-color: $gold;
-                border-color: $gold;
+                background-color: $moon;
+                border-color: $moon;
                 color: $blood-red;
               }
             }
+          }
+
+          .back {
+            box-shadow: 0 0 2rem $magic-purple;
+            text-shadow: 0 0 2rem $magic-purple;
           }
 
           &:hover {
