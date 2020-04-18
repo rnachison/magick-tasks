@@ -7,12 +7,10 @@
       breakpoint="md"
       label="Title"
       :label-for="'title-' + id"
-      :invalid-feedback="invalidFeedback"
-      :state="state">
+      :invalid-feedback="invalidFeedback">
       <b-form-input
         :id="'title-' + id"
-        v-model.trim="task.title"
-        :state="state">
+        v-model.trim="task.title">
       </b-form-input>
     </b-form-group>
     <b-form-group
@@ -44,12 +42,6 @@
       :modelValue="task.isComplete"
       @toggle-change="toggleComplete($event)"
     />
-    <!-- <b-form-checkbox
-      :id="'is-complete-' + id"
-      v-model="task.isComplete"
-      name="is-complete">
-      Complete
-    </b-form-checkbox> -->
     <b-form-group
       breakpoint="md">
       <div class="button-wrapper">

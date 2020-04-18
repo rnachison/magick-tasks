@@ -13,7 +13,8 @@
               <TaskForm
                 :id="0"
                 @submit-task="createTask($event)"
-                @discard-task="discardTask()" />
+                @discard-task="discardTask()"
+              />
             </div>
           </b-card>
         </div>

@@ -1,5 +1,12 @@
 <template>
-  <b-row class="justify-content-md-center">
+  <UserForm
+    :title="'Please Register'"
+    :errors="errors"
+    :submitName="'Register'"
+    :routeName="'Cancel'"
+    @submit="onSubmit($event)"
+  />
+  <!-- <b-row class="justify-content-md-center">
     <Header
       :showCredits="false"
     />
@@ -29,13 +36,13 @@
         <b-button type="button" variant="success" @click="$router.go(-1)">Cancel</b-button>
       </b-form>
     </b-col>
-  </b-row>
+  </b-row> -->
 </template>
 
 <script>
 
 import { APIService } from '../APIService';
-import Header from './Header.vue';
+import UserForm from './UserForm.vue';
 const apiService = new APIService();
 
 export default {
@@ -47,15 +54,14 @@ export default {
     }
   },
   components: {
-    Header
+    UserForm
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
-      apiService.register(this.register)
+    onSubmit (userInfo) {
+      apiService.register(userInfo)
       .then(response => {
         console.log(response.status);
-        alert("Registered successfully")
+        alert("Success!")
         this.$router.push({
           name: 'Login'
         })

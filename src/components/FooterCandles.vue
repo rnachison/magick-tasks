@@ -1,6 +1,10 @@
 <template>
   <div class="candle-wrapper">
-    <img src="../assets/40144-edited.svg" alt="candles" class="img-fluid candles">
+    <img
+      src="../assets/40144-edited.svg"
+      alt="candles"
+      class="img-fluid candles"
+    />
   </div>
 </template>
 

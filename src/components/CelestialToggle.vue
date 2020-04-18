@@ -6,7 +6,8 @@
       :value="value"
       class="celestial-toggle"
       :id="'celestial-toggle-' + id"
-      @change="$emit('toggle-change', value)"/>
+      @change="$emit('toggle-change', value)"
+    />
     <label
       :for="'celestial-toggle-' + id"
       class="toggle">

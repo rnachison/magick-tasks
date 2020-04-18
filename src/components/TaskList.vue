@@ -34,7 +34,8 @@
           :isUnchosen="chosenTask != task.id && oldTask == task.id"
           @choose-task="chooseTask($event)"
           @close-task="closeTask()"
-          @discard-task="discardTask($event)" />
+          @discard-task="discardTask($event)"
+        />
       </transition-group>
     </div>
     <ul v-if="errors && errors.length">

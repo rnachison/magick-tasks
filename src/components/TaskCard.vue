@@ -25,7 +25,8 @@
         :isComplete="task.isComplete"
         :id="task.id"
         @submit-task="updateTask(task, $event)"
-        @discard-task="discardTask($event)" />
+        @discard-task="discardTask($event)"
+      />
     </div>
   </b-card>
 </template>

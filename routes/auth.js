@@ -8,17 +8,17 @@ var User = require('../models/').User;
 
 router.post('/register', function(req, res) {
   if (!req.body.username || !req.body.password) {
-    res.json({success: false, msg: 'Please pass username and password.'});
+    return res.status(400).send({success: false, msg: 'Please pass username and password.'});
   } else {
     User.create({
       username: req.body.username,
       password: req.body.password
     })
     .then(function() {
-      res.json({success: true, msg: 'Successful created new user.'});
+      res.json({success: true, msg: 'Successfully created new user.'});
     }).catch(function(err) {
       console.log(err);
-      return res.json({success: false, msg: 'Username already exists.'});
+      return res.status(400).send({success: false, msg: 'Username already exists.'});
     });
   }
 });
@@ -33,9 +33,7 @@ router.post('/login', function(req, res) {
       if (!user) {
         return res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
       }
-      console.log('found user');
       user.comparePassword(req.body.password, function (err, isMatch) {
-        console.log('inside user.comparePassword');
         if (isMatch && !err) {
           // if user is found and password is right create a token
           var token = jwt.sign(user.toJSON(), process.env.SECRET);
