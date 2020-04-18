@@ -53,6 +53,7 @@ $animation-transition: 0.8s ease-out;
               left: 50%;
               top: 0;
               transform: translate(-50%,-63%);
+              transition: $transition;
             }
 
             .task-notes {
@@ -80,6 +81,11 @@ $animation-transition: 0.8s ease-out;
             .front {
               box-shadow: 0 0 2rem $magic-orange;
               text-shadow: 0 0 2rem $magic-orange;
+
+              .symbol {
+                transform: translate(-50%, -63%) rotate(-360deg);
+                transition: $transition;
+              }
             }
         }
 
