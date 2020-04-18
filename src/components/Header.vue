@@ -1,27 +1,40 @@
 <template>
-  <div class="header-container">
-    <b-navbar type="light" fixed="top">
-      <h1>
-        <b-navbar-brand href="/">Tasks</b-navbar-brand>
-      </h1>
+  <div id="header-container">
+    <b-navbar fixed="top">
+      <b-button
+        class="header-link home-link"
+        href="/">
+        Tasks
+      </b-button>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <span v-if="showCreate">
-            <b-nav-item href="#/add-task">
-              Add Task
-            </b-nav-item>
+            <b-nav-text>
+              <b-button
+                class="header-link"
+                href="#/add-task">
+                  Add Task
+              </b-button>
+            </b-nav-text>
           </span>
           <span v-if="showCredits">
-            <b-nav-item
-              href="#/credits">
-              Credits
-            </b-nav-item>
+            <b-nav-text>
+              <b-button
+                class="header-link"
+                href="#/credits">
+                  Credits
+              </b-button>
+            </b-nav-text>
           </span>
           <span v-if="showLogout">
-            <b-nav-item @click="logout()">
-              Logout
-          </b-nav-item>
+            <b-nav-text>
+              <b-button
+                class="header-link"
+                @click="logout()">
+                  Logout
+              </b-button>
+          </b-nav-text>
           </span>
         </b-navbar-nav>
     </b-navbar>
@@ -49,11 +62,34 @@ export default {
 
 <style lang="scss">
 
-  .header-container {
+  #header-container {
 
     .navbar {
-      background: rgba(0,0,0,.63);
-      z-index: 50;
+
+      .header-link.btn {
+        background: rgba($moon, .63);
+        margin-left: 10px;
+        padding: 16px 10px;
+        border-radius: 0 0 20px 20px;
+        transform: translateY(-26px);
+        transition: $transition;
+        color: $blood-red;
+        border: none;
+
+        &.home-link {
+          font-family: $title-font;
+          font-size: 1.5em;
+          transform: translateY(-22px);
+        }
+
+        &:hover {
+          transition: $transition;
+          transform: translateY(-20px);
+          color: $purple;
+          box-shadow: $magic-shadow;
+          text-shadow: $magic-shadow;
+        }
+      }
     }
   }
 

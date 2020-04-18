@@ -36,12 +36,12 @@
 
         &:hover {
           color: $magic-orange;
-          box-shadow: 0 0 15px #d35400;
-          text-shadow: 0 0 15px #d35400;
+          box-shadow: $flame-shadow;
+          text-shadow: $flame-shadow;
 
           &:before {
             transform: scale(1.2);
-            box-shadow: 0 0 15px #d35400;
+            box-shadow: $flame-shadow;
             filter: blur(3px);
           }
         }
@@ -50,12 +50,12 @@
       &.destroy-button {
         &:hover {
           color: $magic-purple !important;
-          box-shadow: 0 0 20px $magic-purple;
-          // text-shadow: 0 0 20px $magic-purple;
+          box-shadow: $magic-shadow;
+          // text-shadow: $magic-shadow;
 
           &:before {
             transform: scale(1.2);
-            box-shadow: 0 0 20px $magic-purple;
+            box-shadow: $magic-shadow;
             filter: blur(3px);
           }
         }

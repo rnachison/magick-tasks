@@ -86,7 +86,7 @@ export default {
     content: var(--off-value);
     left: -10px;
     transform: translate(-100%, -50%);
-    color: $yellow;
+    color: $gold;
   }
 
   &:after {
@@ -105,9 +105,9 @@ export default {
   left: 3px;
   width: 50px - 6;
   height: 50px - 6;
-  background-color: $yellow;
+  background-color: $gold;
   border-radius: 50px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  box-shadow: 0 0 1.5rem $magic-orange;
   transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform:  rotate(-45deg);
 
@@ -221,6 +221,7 @@ input:checked {
     .toggle__handler {
       background-color: $moon;
       transform: translateX(40px) rotate(0);
+      box-shadow: 0 0 2rem $magic-purple;
 
       .crater { opacity: 1; }
     }
