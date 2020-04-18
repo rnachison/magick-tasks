@@ -5,12 +5,19 @@
       :showCredits="true"
     />
     <b-col cols="9">
-      <h2>
-        Add Task
-      </h2>
-      <TaskForm
-        @submit-task="createTask($event)"
-        @discard-task="discardTask()" />
+      <div class="deck-wrapper">
+        <div class="card-deck">
+          <b-card
+            class="chosen">
+            <div class="back">
+              <TaskForm
+                :id="0"
+                @submit-task="createTask($event)"
+                @discard-task="discardTask()" />
+            </div>
+          </b-card>
+        </div>
+      </div>
     </b-col>
     <FooterCandles />
     <FooterDesk />
@@ -59,7 +66,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  #add-task {
-    padding-bottom: 50px;
-  }
+
 </style>

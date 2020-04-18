@@ -88,6 +88,7 @@ $animation-transition: 0.8s ease-out;
 
           animation: card-chosen $animation-transition forwards;
           cursor: auto;
+          pointer-events: none;
 
           .card-body {
 
@@ -99,6 +100,7 @@ $animation-transition: 0.8s ease-out;
             .back {
 
               animation: back-chosen $animation-transition forwards;
+              pointer-events: auto;
             }
           }
         }

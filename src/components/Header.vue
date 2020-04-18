@@ -66,6 +66,8 @@ export default {
 
     .navbar {
 
+      z-index: 50;
+
       .header-link.btn {
         background: rgba($moon, .63);
         margin-left: 10px;

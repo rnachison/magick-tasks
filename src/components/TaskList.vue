@@ -145,7 +145,9 @@ export default {
     },
     handleResize() {
       var deckContainerWidth = this.$refs.deckContainer.clientWidth;
-      this.rowLength = Math.floor((deckContainerWidth - 100) / 175);
+      var marginPull = -50;
+      var cardwidth = 225;
+      this.rowLength = Math.floor((deckContainerWidth + (2 * marginPull)) / (cardwidth + marginPull));
     }
   },
   destroyed() {

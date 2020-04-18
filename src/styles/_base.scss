@@ -46,11 +46,19 @@ html {
         background-color: $velvet-red;
         border-color: $velvet-red;
         color: $midnight-purple;
+        transition: $transition;
 
         &:hover {
           background-color: $velvet-red;
           border-color: $velvet-red;
           color: $magic-orange;
+          transition: $transition;
+
+          &:before {
+            transform: scale(1.2);
+            box-shadow: $flame-shadow;
+            filter: blur(3px);
+          }
         }
       }
 
@@ -60,6 +68,7 @@ html {
         &:hover {
           color: lighten($blood-red, 15%);
           text-shadow: $flame-shadow;
+          text-decoration: none;
         }
       }
     }

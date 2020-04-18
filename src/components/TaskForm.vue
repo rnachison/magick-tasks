@@ -105,7 +105,6 @@ export default {
     this.task.notes = this.notes;
     this.task.isComplete = this.isComplete;
     this.task.dueDate = this.dueDate ? new Date(this.dueDate) : null;
-    this.id = this.id ? this.id : 0;
   },
   methods: {
     toggleComplete(isComplete) {
