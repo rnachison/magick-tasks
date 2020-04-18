@@ -1,25 +1,29 @@
 <template>
-<div class="credits-container">
+<div id="credits-container">
   <Header />
-  <div class="">
+  <div class="credit-wrapper">
     Created by:
-    <b-link href="https://rebecca-nachison.herokuapp.com/">Rebecca Nachison</b-link>
+    <b-link href="https://rebecca-nachison.herokuapp.com" target="_blank">Rebecca Nachison</b-link>
   </div>
-  <div class="">
+  <div class="credit-wrapper">
     Icons:
-    <b-link href="http://www.freepik.com">Designed by macrovector_official / Freepik</b-link>
+    <b-link href="http://www.freepik.com" target="_blank">Designed by macrovector_official / Freepik</b-link>
   </div>
-  <div class="">
+  <div class="credit-wrapper">
     Candles:
-    <b-link href="http://www.freepik.com">Designed by rawpixel.com / Freepik</b-link>
+    <b-link href="http://www.freepik.com" target="_blank">Designed by rawpixel.com / Freepik</b-link>
   </div>
-  <div class="">
+  <div class="credit-wrapper">
     Day and Night toggle adapted from:
-    <b-link href="https://codepen.io/bnthor/pen/WQBNxO">Benjamin Réthoré</b-link>
+    <b-link href="https://codepen.io/bnthor/pen/WQBNxO" target="_blank">Benjamin Réthoré</b-link>
   </div>
-  <div class="">
+  <div class="credit-wrapper">
     Card animation inspired by:
-    <b-link href="https://codepen.io/william-goldsworthy/pen/JzVajj">William Goldsworthy</b-link>
+    <b-link href="https://codepen.io/william-goldsworthy/pen/JzVajj" target="_blank">William Goldsworthy</b-link>
+  </div>
+  <div class="credit-wrapper">
+    Glow inspired by:
+    <b-link href="https://codepen.io/Stockin/pen/XPvpoB" target="_blank">Stockin</b-link>
   </div>
 </div>
 </template>
@@ -37,4 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
+  #credits-container {
+    .credit-wrapper {
+      margin-bottom: 10px;
+    }
+  }
 </style>
