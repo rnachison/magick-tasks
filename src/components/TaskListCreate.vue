@@ -103,12 +103,12 @@ export default {
         transform: translate(-50%,-50%) rotate(0deg);
         animation: hourglass-spin 2s ease-in-out infinite;
       }
-    }
 
-    &.loading {
-      opacity: 1;
-      transition: $transition;
-      pointer-events: all;
+      &.loading {
+        opacity: 1;
+        transition: $transition;
+        pointer-events: all;
+      }
     }
   }
 
