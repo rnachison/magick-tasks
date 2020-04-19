@@ -12,7 +12,7 @@
           <b-alert show>{{error.message}}</b-alert>
         </div>
       </div>
-      <b-form @submit.stop="$emit('submit', login)">
+      <b-form @submit.prevent="$emit('submit', userInfo)">
         <b-form-group
           horizontal
           :label-cols="4"
@@ -20,7 +20,7 @@
           label="Enter Username">
           <b-form-input
             id="username"
-            v-model.trim="login.username"
+            v-model.trim="userInfo.username"
             required>
           </b-form-input>
         </b-form-group>
@@ -32,7 +32,7 @@
           <b-form-input
             type="password"
             id="password"
-            v-model.trim="login.password"
+            v-model.trim="userInfo.password"
             required>
           </b-form-input>
         </b-form-group>
@@ -61,7 +61,7 @@ export default {
   },
   data () {
     return {
-      login: {},
+      userInfo: {},
     }
   },
   methods: {

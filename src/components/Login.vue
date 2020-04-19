@@ -28,7 +28,7 @@ export default {
     onSubmit (userInfo) {
       apiService.login(userInfo)
       .then(response => {
-        localStorage.setItem('jwtToken', response.data.token)
+        localStorage.setItem('jwtToken', response.data.token);
         this.$router.push({
           name: 'TaskList'
         })
@@ -36,11 +36,6 @@ export default {
       .catch(e => {
         console.log(e)
         this.errors.push(e)
-      })
-    },
-    register () {
-      this.$router.push({
-        name: 'Register'
       })
     }
   }
