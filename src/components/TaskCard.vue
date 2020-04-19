@@ -48,7 +48,7 @@ export default {
   },
   data () {
     return {
-      symbols: ['demon-bottle', 'dragon-bottle', 'eyeball', 'infinite-ouroboros', 'moon', 'moth', 'ouroboros', 'skull', 'sun']
+      symbols: ['demon-bottle', 'dragon-bottle', 'eyeball', 'big-ouroboros', 'moon', 'moth', 'ouroboros', 'skull', 'sun']
     }
   },
   components: {

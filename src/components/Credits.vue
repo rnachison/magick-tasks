@@ -14,15 +14,15 @@
     <b-link href="http://www.freepik.com" target="_blank">Designed by rawpixel.com / Freepik</b-link>
   </div>
   <div class="credit-wrapper">
-    Day and Night toggle adapted from:
-    <b-link href="https://codepen.io/bnthor/pen/WQBNxO" target="_blank">Benjamin Réthoré</b-link>
-  </div>
-  <div class="credit-wrapper">
     Card animation inspired by:
     <b-link href="https://codepen.io/william-goldsworthy/pen/JzVajj" target="_blank">William Goldsworthy</b-link>
   </div>
   <div class="credit-wrapper">
-    Glow inspired by:
+    Day and Night toggle adapted from:
+    <b-link href="https://codepen.io/bnthor/pen/WQBNxO" target="_blank">Benjamin Réthoré</b-link>
+  </div>
+  <div class="credit-wrapper">
+    Glow adapted from:
     <b-link href="https://codepen.io/Stockin/pen/XPvpoB" target="_blank">Stockin</b-link>
   </div>
 </div>
