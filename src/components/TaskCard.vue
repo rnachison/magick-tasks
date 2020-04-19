@@ -12,8 +12,10 @@
         <div class="task-notes">
           {{task.notes}}
         </div>
-        <div v-if="dueDate">
-          {{ dueDate | moment("dddd, MMMM Do YYYY") }}
+        <div
+          v-if="dueDate"
+          class="due-date">
+          {{ dueDate | moment("MM/DD/YYYY - dddd") }}
         </div>
       </b-card-text>
     </div>

@@ -22,55 +22,62 @@ html {
       height: 100%;
       width: 100%;
 
-      h1, h2 {
-        color: $gold;
-        font-family: $title-font;
-      }
+      .container {
 
-      h4 {
-        font-family: $title-font;
-        font-size: 1.5em;
-      }
+        max-width: 100%;
+        width: 100%;
 
-      // .btn {
-      //   background-color: $Medieval-Illustrations-1-hex;
-      //   border-color: $Medieval-Illustrations-1-hex;
-      //
-      //   &:hover {
-      //     background-color: lighten($Medieval-Illustrations-1-hex, 10%);
-      //     border-color: lighten($Medieval-Illustrations-1-hex, 10%);
-      //   }
-      // }
+        h1, h2 {
+          color: $gold;
+          font-family: $title-font;
+        }
 
-      .btn {
-        background-color: $velvet-red;
-        border-color: $velvet-red;
-        color: $midnight-purple;
-        transition: $transition;
+        h4 {
+          font-family: $title-font;
+          font-size: 1.5em;
+        }
 
-        &:hover {
+        // .btn {
+        //   background-color: $Medieval-Illustrations-1-hex;
+        //   border-color: $Medieval-Illustrations-1-hex;
+        //
+        //   &:hover {
+        //     background-color: lighten($Medieval-Illustrations-1-hex, 10%);
+        //     border-color: lighten($Medieval-Illustrations-1-hex, 10%);
+        //   }
+        // }
+
+        .btn {
           background-color: $velvet-red;
           border-color: $velvet-red;
-          color: $magic-orange;
+          color: $midnight-purple;
           transition: $transition;
 
-          &:before {
-            transform: scale(1.2);
-            box-shadow: $flame-shadow;
-            filter: blur(3px);
+          &:hover {
+            background-color: $velvet-red;
+            border-color: $velvet-red;
+            color: $magic-orange;
+            transition: $transition;
+
+            &:before {
+              transform: scale(1.2);
+              box-shadow: $flame-shadow;
+              filter: blur(3px);
+            }
+          }
+        }
+
+        a {
+          color: $blood-red;
+
+          &:hover {
+            color: lighten($blood-red, 15%);
+            text-shadow: $flame-shadow;
+            text-decoration: none;
           }
         }
       }
 
-      a {
-        color: $blood-red;
-
-        &:hover {
-          color: lighten($blood-red, 15%);
-          text-shadow: $flame-shadow;
-          text-decoration: none;
-        }
-      }
     }
 
   }

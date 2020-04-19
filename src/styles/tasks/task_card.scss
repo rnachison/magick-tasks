@@ -53,11 +53,15 @@ $animation-transition: 0.8s ease-out;
               left: 50%;
               top: 0;
               transform: translate(-50%,-63%);
-              transition: $transition;
             }
 
             .task-notes {
               white-space: pre-line;
+            }
+
+            .due-date {
+              font-weight: 600;
+              padding-top: 1.5em;
             }
           }
 
@@ -83,8 +87,7 @@ $animation-transition: 0.8s ease-out;
               text-shadow: 0 0 2rem $magic-orange;
 
               .symbol {
-                transform: translate(-50%, -63%) rotate(-360deg);
-                transition: $transition;
+                animation: symbol-hover 0.4s ease-in-out;
               }
             }
         }
@@ -157,6 +160,27 @@ $animation-transition: 0.8s ease-out;
           }
         }
     }
+  }
+}
+
+@keyframes symbol-hover {
+  0% {
+    transform: translate(-50%,-63%) rotate(0deg);
+  }
+  20% {
+    transform: translate(-50%,-63%) rotate(-15deg);
+  }
+  40% {
+    transform: translate(-50%,-63%) rotate(15deg);
+  }
+  60% {
+    transform: translate(-50%,-63%) rotate(-9deg);
+  }
+  80% {
+    transform: translate(-50%,-63%) rotate(9deg);
+  }
+  100% {
+    transform: translate(-50%,-63%) rotate(0deg);
   }
 }
 
