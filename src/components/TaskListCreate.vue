@@ -4,6 +4,15 @@
       :showLogout="true"
       :showCredits="true"
     />
+    <div
+      id="overlay"
+      :class="{ loading: isLoading }">
+      <img
+        src="../assets/hourglass.svg"
+        alt="hourglass"
+        id="hourglass"
+      />
+    </div>
     <b-col cols="9">
       <div class="deck-wrapper">
         <div class="card-deck">
@@ -44,8 +53,14 @@ export default {
     Header,
     TaskForm
   },
+  data () {
+    return {
+      isLoading: false
+    }
+  },
   methods: {
     createTask(task) {
+      this.isLoading = true;
       apiService.createTask(task)
         .then(response => {
           console.log(response.status);
@@ -67,5 +82,42 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  #add-task {
 
+    #overlay {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,.8);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: $transition;
+
+      #hourglass {
+        top: 37%;
+        left: 50%;
+        position: fixed;
+        transform: translate(-50%,-50%) rotate(0deg);
+        animation: hourglass-spin 2s ease-in-out infinite;
+      }
+    }
+
+    &.loading {
+      opacity: 1;
+      transition: $transition;
+      pointer-events: all;
+    }
+  }
+
+  @keyframes hourglass-spin {
+    0% {
+      transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%,-50%) rotate(360deg);
+    }
+  }
 </style>
