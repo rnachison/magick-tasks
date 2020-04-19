@@ -104,6 +104,10 @@ $animation-transition: 0.8s ease-out;
             .front {
 
               animation: front-chosen $animation-transition forwards;
+
+              .symbol {
+                animation: none;
+              }
             }
 
             .back {
